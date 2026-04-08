@@ -2,7 +2,7 @@
 
 This repository contains the source code for some of my scientific publications.
 
-I use either [LaTeX](https://www.latex-project.org/) or [Typst](https://github.com/typst/typst) for authoring documents.
+These documents were authored using either [LaTeX](https://www.latex-project.org/) or [Typst](https://github.com/typst/typst).
 
 ## Talks
 

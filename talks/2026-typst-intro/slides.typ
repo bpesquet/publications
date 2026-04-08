@@ -108,10 +108,10 @@
 == Demo time! #emoji.glasses
 
 - Examples:
-  - Syntax basics [#link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/basics.typ")[source] | #link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/basics.pdf")[result]]
-  - Math [#link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/math.typ")[source] | #link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/math.pdf")[result]]
-  - Article draft [#link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/article.typ")[source] | #link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/demos/article.pdf")[result]]
-  - Slideshow (this doc!) [#link("https://github.com/bpesquet/publications//blob/main/talks/2026-typst-intro/slides.typ")[source]]. Uses #link("https://touying-typ.github.io/")[Touying]
+  - Syntax basics [#link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/basics.typ")[source] | #link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/basics.pdf")[result]]
+  - Math [#link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/math.typ")[source] | #link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/math.pdf")[result]]
+  - Article draft [#link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/article.typ")[source] | #link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/demos/article.pdf")[result]]
+  - Slideshow (this doc!) [#link("https://github.com/bpesquet/publications/blob/main/talks/2026-typst-intro/slides.typ")[source]]. Uses #link("https://touying-typ.github.io/")[Touying]
 - See the #link("https://typst.app/docs/tutorial/")[official tutorial] for more details.
 
 = Should you use Typst?
