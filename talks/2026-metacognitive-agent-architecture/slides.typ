@@ -19,16 +19,16 @@
   #place(
     bottom + left,
     dx: 10mm,
-    link("https://www.inria.fr")[#image("images/inria_logo.jpg", width: 15%)],
+    link("https://www.inria.fr")[#image("../images/inria_logo.jpg", width: 15%)],
   )
   #place(
     bottom + center,
-    link("https://inria.fr/fr/mnemosyne")[#image("images/mnemosyne_logo.png", width: 15%)],
+    link("https://inria.fr/fr/mnemosyne")[#image("../images/mnemosyne_logo.png", width: 15%)],
   )
   #place(
     bottom + right,
     dx: -10mm,
-    link("https://ensc.bordeaux-inp.fr")[#image("images/ensc_logo.jpg", width: 15%)],
+    link("https://ensc.bordeaux-inp.fr")[#image("../images/ensc_logo.jpg", width: 15%)],
   )
 
   #title[

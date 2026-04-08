@@ -1,6 +1,12 @@
-# Talks
+# Publications
 
-This repository contains the [Typst](https://github.com/typst/typst) source code for my public talks.
+This repository contains the source code for some of my scientific publications.
 
-- [Nuit de la recherche ENSC](./2026-nuit-recherche-ensc/slides.typ)
-- [Introduction to Typst](./2026-typst-intro/slides.typ)
+I use either [LaTeX](https://www.latex-project.org/) or [Typst](https://github.com/typst/typst) for authoring documents.
+
+## Talks
+
+### 2026
+
+- [Introduction to Typst](./talks/2026-typst-intro/)
+- [A cognitively plausible architecture for a metacognitive agent](./talks/2026-metacognitive-agent-architecture/)

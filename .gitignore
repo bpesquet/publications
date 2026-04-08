@@ -1,6 +1,6 @@
 # macOS folder files
 .DS_Store
 
-# PDF output, except for demos
+# PDF output, except for Typst demos
 *.pdf
-!2026-typst-intro/demos/*.pdf
+!talks/2026-typst-intro/demos/*.pdf
