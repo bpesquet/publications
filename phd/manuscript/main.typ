@@ -28,25 +28,34 @@
   depth: 3,
 )
 #pagebreak()
+
+// Figures
 #outline(
-  title: "List of Figures",
+  title: "Figures",
   target: figure.where(kind: image),
 )
 #pagebreak()
+
+// Tables
 #outline(
-  title: "List of Tables",
+  title: "Tables",
   target: figure.where(kind: table),
 )
 #pagebreak()
-// List of Acronyms
+
+#include "content/glossary.typ"
+#pagebreak()
+
+// Acronyms
 #print-index(
-  title: "List of Acronyms",
+  title: "Acronyms",
   outlined: false,
   row-gutter: 1em,
-  clickable: false,
+  clickable: true,
 )
 
 // ---------- MAIN ----------
 #show: main-matter
 
 #include "content/introduction.typ"
+

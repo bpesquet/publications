@@ -3,4 +3,5 @@
 
 #init-acronyms((
   "EAM": "Evidence Accumulation Model",
+  "DDM": "Diffusion Decision Model",
 ))
