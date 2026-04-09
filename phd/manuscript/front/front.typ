@@ -1,3 +1,8 @@
+#import "deps.typ"
+#import "glossary.typ": entry-list
+#import deps.acrostiche: print-index
+#import deps.glossarium: print-glossary
+
 #let front-matter(body) = {
   set page(numbering: "i")
   counter(page).update(1)
@@ -36,4 +41,16 @@
   title: "List of Tables",
   target: figure.where(kind: table),
 )
+#pagebreak()
+
+// List of Acronyms
+#print-index(
+  title: "List of Acronyms",
+  outlined: false,
+  row-gutter: 1em,
+  clickable: false,
+)
+#pagebreak()
+
+#print-glossary(entry-list)
 #pagebreak()

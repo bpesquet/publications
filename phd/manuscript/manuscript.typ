@@ -9,13 +9,11 @@
     author: author,
     date: if date != none { date } else { auto },
   )
-
   set page(
     paper: "a4",
     numbering: "1",
     number-align: right,
   )
-
   body
 }
 
@@ -24,5 +22,8 @@
   author: "Baptiste Pesquet",
 )
 
+#include "front/acronyms.typ"
+#include "front/glossary.typ"
+
 #include "front/front.typ"
-#include "content/content.typ"
+#include "main/main.typ"
