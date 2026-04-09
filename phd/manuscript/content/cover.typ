@@ -1,4 +1,4 @@
-// No page numbering for cover
+// No page numbering on cover
 #set page(numbering: none)
 
 #align(center + horizon)[
