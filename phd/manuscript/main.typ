@@ -20,6 +20,9 @@
 #show: main-matter
 
 #include "content/introduction.typ"
+#include "content/part1.typ"
+#include "content/part2.typ"
+#include "content/conclusion.typ"
 
 // ---------- BACK ----------
 

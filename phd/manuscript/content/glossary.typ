@@ -1,7 +1,11 @@
 = Glossary
 
-/ Choice: The observable result of a decision.
+/ Accuracy: Proportion of all choices that were correct or optimal.
 
-/ Decision: A deliberative process that results in the commitment to a categorical proposition.
+/ Choice: The option selected by a decision.
 
-/ Decision-making: The study of the cognitive processes involved in the making of a decision.
+/ Decision: A deliberative activity resulting in the commitment to one option over others.
+
+/ Decision-making: The process underlying a decision.
+
+/ Value: The subjective worth or desirability of an outcome.

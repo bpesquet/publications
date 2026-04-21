@@ -5,8 +5,9 @@
 // Must be called before any reference to acronyms
 //  => include before content
 #init-acronyms((
-  "EAM": "Evidence Accumulation Model",
-  "DDM": "Diffusion Decision Model",
+  "RDM": "Random Dot Motion",
+  "RT": "Reaction Time",
+  "SAT": "Speed-Accuracy Tradeoff",
 ))
 
 // Acronyms

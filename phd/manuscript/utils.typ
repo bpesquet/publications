@@ -48,5 +48,6 @@
     it
     v(12%, weak: true)
   }
+  set math.equation(numbering: "(1)")
   body
 }
