@@ -8,4 +8,6 @@
 
 / Decision-making: The process underlying a decision.
 
+/ Uncertainty: Variability in the representation of information during a decision.
+
 / Value: The subjective worth or desirability of an outcome.

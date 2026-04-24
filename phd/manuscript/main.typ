@@ -26,4 +26,5 @@
 
 // ---------- BACK ----------
 
+// TODO: sort biblio alphabetically
 #bibliography("content/bibliography.bib")

@@ -5,6 +5,7 @@
 // Must be called before any reference to acronyms
 //  => include before content
 #init-acronyms((
+  "MAB": "Multi-Armed Bandit",
   "RDM": "Random Dot Motion",
   "RT": "Reaction Time",
   "SAT": "Speed-Accuracy Tradeoff",

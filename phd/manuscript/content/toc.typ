@@ -6,6 +6,7 @@
 )
 
 // Figures
+// TODO: display shorter titles for figures
 #outline(
   title: "Figures",
   target: figure.where(kind: image),
