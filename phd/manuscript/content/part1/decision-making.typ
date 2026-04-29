@@ -1,5 +1,6 @@
 #import "../../utils.typ"
-#import utils.acrostiche: acr, acrfull, reset-acronym
+#import utils.acrostiche: acr, acrfull, acrpl, reset-acronym
+#import utils.nth: nth
 
 == Decision-making
 
@@ -75,12 +76,36 @@ From the perspective of the decision-maker, uncertainty can also be interpreted 
 
 - _Expected_ uncertainty comes from known, irreducible stochasticity within a stable environment. This refers to situations in which the variability of outcomes complies with the model of the world used by the decision-maker. For example, a subject observing a series of six-sided die rolls would expect each possible result to have a probability of around $1/6$.
 
-- _Unexpected_ uncertainty arises when evidence signals a possible change in the environment. This refers to situations in which the variability of outcomes is no longer explained by the decision-maker's model. For example, results for a series of six-sided die rolls diverging from the $1/6$ probability would contradict the hypothesis that the die is fair.
+- _Unexpected_ uncertainty, sometimes called _volatility_, arises when evidence signals a possible change in the environment. This refers to situations in which the variability of outcomes is no longer explained by the decision-maker's model. Unexpected uncertainty should promote learning about the potentially new context. For example, results for a series of six-sided die rolls that diverge from the $1/6$ probability would contradict the hypothesis that the die is fair.
 
 The relationship between these two taxonomies is partly overlapping and partly orthogonal. There are clear correspondances between aleatoric and expected uncertainty (known stochasticity of a stable environment), and between epistemic and unexpected uncertainty (deficiencies in knowledge of the environment). However, the alignment between the two classifications is not perfect. The distinction between expected and unexpected uncertainty is subjective and tracks the decision-maker's anticipation of variability. A poorly calibrated agent could experience high unexpected uncertainty in a purely aleatoric world. Another difference is that unexpected uncertainty may not be reducible in an ever changing world, violating the definition of epistemic uncertainty. Lastly, knightian uncertainty lies outside the expected/unexpected axis: under these conditions, the decision-maker may not even have enough structure to detect that its model is wrong.
 
-It appears that each framework tackles a different question. Aleatoric/epistemic/knightian uncertainty is a static, normative classification of the underlying nature of uncertainty. Expected/unexpected uncertainty is a subjective, dynamic dichotomy aimed at guiding adaptation of behavior.
+It appears that each framework tackles different questions. Aleatoric/epistemic/knightian uncertainty is a static, normative classification of the underlying nature of uncertainty sources. Expected/unexpected uncertainty is a subjective, dynamic dichotomy aimed at guiding adaptation of behavior.
 
 === Computational modeling
+
+One approach to understanding decision-making is through computational mod- eling. Many solutions have been proposed to describe the decision process, rang- ing from abstract psychological models of behaviour to detailed models of neural circuits @bogaczOptimalDecisionmakingTheories2007. The following sections review several prominent models of decision-making.
+
+==== Signal Detection Theory
+
+#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of an observer - biological or artificial - to discriminate _signal_ (meaningful information) from  _noise_. A key virtue of #acr("SDT") is that it also accounts for the observer's decision-making biases and sensitivity. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology, clinical medicine, neuroscience, quality control and machine learning.
+
+#acr("SDT") is applicable to any binary classification task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples may include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of scenario, called #acr("2AFC") in the context of experimental psychology, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
+
+#figure(
+  table(
+    columns: 3,
+    table.header([*Signal*], [*Observer response: "absent"*], [*Observer response: "present"*]),
+    [Absent], [Correct Rejection], [False Alarm],
+    [Present], [Miss], [Hit],
+  ),
+  caption: [
+    Categorization of possible responses in a binary decision task. Correct Rejection: correctly identifying the absence of a signal. False Alarm: Incorrectly detecting a signal when it is absent. Miss: Failing to detect a signal when it is present. Hit: Correctly detecting a signal when it is present.
+  ],
+) <tab:sdt_outcomes>
+
+A key assumption of #acr("SDT") is that the evidence received at each trial can be modeled as a single scalar value drawn from one of two probability distributions: a noise distribution $cal(N)(mu_("noise"), sigma^2)$ when the signal is absent and a signal-plus-noise distribution $cal(N)(mu_("signal"), sigma^2)$ when it is present.
+
+==== Single Probability Ratio Test
 
 === Neural basis

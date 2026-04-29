@@ -5,10 +5,13 @@
 // Must be called before any reference to acronyms
 //  => include before content
 #init-acronyms((
+  "2AFC": "Two-Alternative Forced Choice",
   "MAB": "Multi-Armed Bandit",
   "RDM": "Random Dot Motion",
   "RT": "Reaction Time",
   "SAT": "Speed-Accuracy Tradeoff",
+  "SDT": "Signal Detection Theory",
+  "SPRT": "Single Probability Ratio Test",
 ))
 
 // Acronyms
