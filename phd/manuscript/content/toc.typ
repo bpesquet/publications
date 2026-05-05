@@ -2,7 +2,7 @@
 #outline(
   title: "Contents",
   indent: auto,
-  depth: 4,
+  depth: 5,
 )
 
 // Figures

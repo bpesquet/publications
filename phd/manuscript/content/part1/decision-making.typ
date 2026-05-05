@@ -84,13 +84,19 @@ It appears that each framework tackles different questions. Aleatoric/epistemic/
 
 === Computational modeling
 
-One approach to understanding decision-making is through computational mod- eling. Many solutions have been proposed to describe the decision process, rang- ing from abstract psychological models of behaviour to detailed models of neural circuits @bogaczOptimalDecisionmakingTheories2007. The following sections review several prominent models of decision-making.
+One approach to understanding decision-making is through computational mod- eling. Many solutions have been proposed to describe the decision process @bogaczOptimalDecisionmakingTheories2007.
 
-==== Signal Detection Theory
+==== Binary decisions
 
-#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of an observer - biological or artificial - to discriminate _signal_ (meaningful information) from  _noise_. A key virtue of #acr("SDT") is that it also accounts for the observer's decision-making biases and sensitivity. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology, clinical medicine, neuroscience, quality control and machine learning.
+Binary decisions have only two possible outcomes. As a first approach, the associated process can be modeled as a comparison between a quantity, hereafter named a #acr("DV") following @goldNeuralBasisDecision2007, and a threshold (or criterion). The #acr("DV") represents the integration into a single conceptual entity of all sources of information available to the decision-maker: external cues, called _evidence_ and denoted $e$, but also any prior beliefs and values that could bias its judgment. The decision is made if (or when) the #acr("DV") exceeds the threshold. This formalism is at the same time conceptually simple and biologically grounded, as we shall see later.
 
-#acr("SDT") is applicable to any binary classification task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples may include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of scenario, called #acr("2AFC") in the context of experimental psychology, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
+The following sections review several prominent models of binary decision-making.
+
+===== Signal Detection Theory
+
+#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of an decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. A key virtue of #acr("SDT") is that it disentangles this ability, called _sensitivity_, from the decision-maker's tendency towards one of the possible responses regarless of the stimulus, called _bias_. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology, clinical medicine, neuroscience, and machine learning. For example, industry quality-control inspectors often detect fewer faulty items as their work day progresses. SDT demonstrated that this decrease in performance usually results from a change in response bias rather than a declining sensitivity.
+
+#acr("SDT") is applicable to any binary decision task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of binary decision task, called #acr("2AFC") in the context of experimental psychology, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
 
 #figure(
   table(
@@ -104,8 +110,16 @@ One approach to understanding decision-making is through computational mod- elin
   ],
 ) <tab:sdt_outcomes>
 
-A key assumption of #acr("SDT") is that the evidence received at each trial can be modeled as a single scalar value drawn from one of two probability distributions: a noise distribution $cal(N)(mu_("noise"), sigma^2)$ when the signal is absent and a signal-plus-noise distribution $cal(N)(mu_("signal"), sigma^2)$ when it is present.
+A major assumption of #acr("SDT") is that the evidence received at each trial can be modeled as a single scalar value drawn from one of two equal-variance Gaussian distributions: a noise distribution $cal(N)(mu_("noise"), sigma^2)$ when the signal is absent and a signal-plus-noise distribution $cal(N)(mu_("signal"), sigma^2)$ when it is present. These two distributions respectively describe
 
-==== Single Probability Ratio Test
+In the general case, the two distributions will overlap, reflecting the task difficulty.
+
+===== Single Probability Ratio Test
+
+===== Diffusion Decision Model
+
+==== Multi-alternative decisions
 
 === Neural basis
+
+

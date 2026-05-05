@@ -6,6 +6,7 @@
 //  => include before content
 #init-acronyms((
   "2AFC": "Two-Alternative Forced Choice",
+  "DV": "Decision Variable",
   "MAB": "Multi-Armed Bandit",
   "RDM": "Random Dot Motion",
   "RT": "Reaction Time",
