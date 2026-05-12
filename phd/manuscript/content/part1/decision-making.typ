@@ -2,18 +2,17 @@
 #import utils.acrostiche: acr, acrfull, acrpl, reset-acronym
 #import utils.nth: nth
 
-== Decision-making
+== The decision process
 
+Everyday, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding to embark oneself on a PhD.
 
-Everyday, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives. Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding to embark oneself on a PhD.
-
-Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and po- litical science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neuronal points of view.
+Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neuronal points of view.
 
 === Conceptual overview
 
-First of all, let's try to clearly define what we are talking about, disentangling key concepts along the way. A _decision_ can either be understood as a process, or as merely its outcome (the observable result). In this study, we retain the former approach and define a decision as a deliberative activity resulting in the commitment to one option over others. The observable result of a decision (the selected option) will be called the _choice_ associated with it. All decisions are instances of a _decision-making_ process, which describes the inner workings leading to a choice. An analogy would be the weighting of available evidence by a jury (decision), adhering to a set of judicial rules and guidelines (decision-making) before settling on a verdict (choice),
+First of all, let's try to clearly define what we are talking about, disentangling key concepts along the way. A _decision_ can either be understood as a _process_, or as merely its _outcome_ (the observable result). In this study, we retain the former approach and define a decision as a deliberative process resulting in the commitment to one alternative (option) over others. The observable result of a decision (the selected option) will be called the _choice_ associated with it. All decisions are instances of a _decision-making_ process, which describes the inner workings leading to a choice. An analogy would be the weighting of available evidence by a jury (decision), adhering to a set of judicial rules and guidelines (decision-making) before settling on a verdict (choice),
 
-The following chapters introduce several keys dimensions of decisions.
+The following subsections introduce several keys dimensions of decisions.
 
 ==== Perceptual decisions
 
@@ -58,43 +57,33 @@ $ "RT" = T_e + T_d + T_r = T_"er" + T_d $ <eq:rt>
 
 ==== Speed-Accuracy Tradeoff
 
-Another criterion for studying decisions is the possibility of objectively evaluating their outcome. Some decisions have correct or optimal answers, to which the chosen alternatives can be compared in order to compute evaluation metrics like _accuracy_. This is typically the case for perceptual decisions, for which the expected results are controlled by the experimenter. On the other hand, some value-based decisions cannot be objectively evaluated: for example, picking one’s favorite color.
+Another criterion for studying decisions is the possibility of objectively evaluating their outcome. Some decisions have correct or optimal answers, to which the chosen alternatives can be compared in order to compute evaluation metrics like _accuracy_. This is typically the case for perceptual decisions, for which the expected results are controlled by the experimenter. On the other hand, some value-based decisions do not have objectively good or bad answers: for example, picking one’s favorite color. In that case, prior knowledge about the decision-maker would be necessary for accuracy to be computed.
 
-For decisions whose outcome can be assessed, the balance between #acr("RT") and accuracy is called the #acr("SAT"). This ubiquitous aspect of decision-making has been a phenomenon of interest in behavioral science for a long time @heitzSpeedaccuracyTradeoffHistory2014. The #acr("SAT") is at least partially under the decision-maker’s control: a faster decisions can be taken at the expense of an higher error rate, and vice-versa @ratcliffDiffusionDecisionModel2016. As such, one must not only consider accuracy and speed, but also the interaction between them when studying decisions @myersPracticalIntroductionUsing2022.
+For decisions whose outcome can be assessed, the balance between #acr("RT") and accuracy is called the #acr("SAT"). It expresses a simple but unescapable fact: certainty takes time. Faster responses rely on potentially incomplete information and tend to be less accurate. On the contrary, integrating more evidence during the decision process generally improves accuracy but takes more time. This ubiquitous aspect of decision-making has been a phenomenon of interest in behavioral science for a long time @heitzSpeedaccuracyTradeoffHistory2014. The #acr("SAT") is at least partially under the decision-maker’s control: faster decisions can be prioritized at the expense of an higher error rate, and vice-versa @ratcliffDiffusionDecisionModel2016. As such, one must not only consider accuracy and speed, but also the interaction between them when studying decisions @myersPracticalIntroductionUsing2022.
 
 ==== Uncertainty
 
-Uncertainty (or incertitude) is an inherent part of almost all decisions. Generally speaking, it characterizes situations involving imperfect, noisy or unknown information. In the narrower context of decision-making, uncertainty refers to the variability in the representation of information during a decision @mamassianConfidenceForcedChoiceOther2020. Sources of uncertainty are indeed multiple. For example, driving one’s car requires processing different visual, auditory and vestibular inputs in order to adapt to a continuous stream of not-so-predictable external events (a child or an animal crossing the street, the car in front of yours breaking suddenly, and so on) @pougetConfidenceCertaintyDistinct2016. Furthermore, uncertainty can arise from imperfections in external signals (e.g. bad image quality in a classification task) or from internal limitations in the abilities of the decision-maker (e.g. added noise when processing signals).
+Uncertainty (or incertitude) is an inherent part of almost all decisions. Generally speaking, it characterizes situations involving changing, noisy or unknown information. In the narrower context of decision-making, uncertainty refers to the variability in the representation of information during a decision @mamassianConfidenceForcedChoiceOther2020. Sources of uncertainty are indeed multiple. For example, driving one’s car requires processing different visual, auditory and vestibular inputs in order to adapt to a continuous stream of not-so-predictable external events (a child or an animal crossing the street, the car in front of yours breaking suddenly, and so on) @pougetConfidenceCertaintyDistinct2016. Furthermore, uncertainty can arise from imperfections in external signals (e.g. bad image quality in a classification task) or from internal limitations in the abilities of the decision-maker (e.g. added noise when processing signals).
 
-Decision theory classifies uncertainty into three different forms:
+From the perspective of the decision-maker, uncertainty can be interpreted as a signal for adapting their behavior, according to the following dichotomy @yuUncertaintyNeuromodulationAttention2005 :
 
-- _Aleatoric_ uncertainty, representing the irreducible randomness of the world. This refers to situations involving a defined space of outcomes with known likelihoods. For example, when rolling a fair six-sided die, the outcome (1 through 6) is inherently random with a well-defined probability for each result.
-- _Epistemic_ uncertainty, representing incomplete knowledge about the world which can in principle be reduced by gathering more information. This refers to situations involving a defined space of outcomes with unknown likelihoods. For example, a geologist deciding whether to drill at a given site is limited by the precision of his data and by his own (lack of) knowledge regarding geological foundations.
-- _Knightian_ uncertainty, arising when the world itself eludes the decision-maker's mental framework for grasping it. This refers to situations in which the space of outcomes itself is unknown. For example, the first major losses linked to subprimes in 2007 made the decision models used by economical agents for portfolio management obsolete, creating a risk-averse environment that fueled the crisis.
+- _Expected_ uncertainty comes from known, irreducible stochasticity within a stable environment. This refers to situations in which the variability of outcomes complies with the model of the world used by the decision-maker (known likelihoods). This is closely related to the concept of _aleatoric_ uncertainty from the decision theory field (TODO: citation d-t?). For example, a subject observing a series of six-sided die rolls would expect each possible result to have a probability of around $1/6$.
 
-From the perspective of the decision-maker, uncertainty can also be interpreted as a signal for adapting their behavior, according to the following dichotomy @yuUncertaintyNeuromodulationAttention2005 :
-
-- _Expected_ uncertainty comes from known, irreducible stochasticity within a stable environment. This refers to situations in which the variability of outcomes complies with the model of the world used by the decision-maker. For example, a subject observing a series of six-sided die rolls would expect each possible result to have a probability of around $1/6$.
-
-- _Unexpected_ uncertainty, sometimes called _volatility_, arises when evidence signals a possible change in the environment. This refers to situations in which the variability of outcomes is no longer explained by the decision-maker's model. Unexpected uncertainty should promote learning about the potentially new context. For example, results for a series of six-sided die rolls that diverge from the $1/6$ probability would contradict the hypothesis that the die is fair.
-
-The relationship between these two taxonomies is partly overlapping and partly orthogonal. There are clear correspondances between aleatoric and expected uncertainty (known stochasticity of a stable environment), and between epistemic and unexpected uncertainty (deficiencies in knowledge of the environment). However, the alignment between the two classifications is not perfect. The distinction between expected and unexpected uncertainty is subjective and tracks the decision-maker's anticipation of variability. A poorly calibrated agent could experience high unexpected uncertainty in a purely aleatoric world. Another difference is that unexpected uncertainty may not be reducible in an ever changing world, violating the definition of epistemic uncertainty. Lastly, knightian uncertainty lies outside the expected/unexpected axis: under these conditions, the decision-maker may not even have enough structure to detect that its model is wrong.
-
-It appears that each framework tackles different questions. Aleatoric/epistemic/knightian uncertainty is a static, normative classification of the underlying nature of uncertainty sources. Expected/unexpected uncertainty is a subjective, dynamic dichotomy aimed at guiding adaptation of behavior.
+- _Unexpected_ uncertainty, sometimes called _volatility_, arises when evidence signals a possible change in the environment. This refers to situations in which the variability of outcomes is no longer explained by the decision-maker's model (unknown likelihoods). Unexpected uncertainty should promote learning about the potentially new context. A parallel can be drawn with _epistemic_ uncertainty from decision theory (incomplete knowledge about the world which can in principle be reduced by gathering more information).  For example, results for a series of six-sided die rolls that diverge from the $1/6$ probability would contradict the hypothesis that the die is fair.
 
 === Computational modeling
 
-One approach to understanding decision-making is through computational mod- eling. Many solutions have been proposed to describe the decision process @bogaczOptimalDecisionmakingTheories2007.
+One approach to understanding decision-making is through computational modeling. Many solutions have been proposed to describe the decision process @bogaczOptimalDecisionmakingTheories2007.
 
 ==== Binary decisions
 
-Binary decisions have only two possible outcomes. As a first approach, the associated process can be modeled as a comparison between a quantity, hereafter named a #acr("DV") following @goldNeuralBasisDecision2007, and a threshold (or criterion). The #acr("DV") represents the integration into a single conceptual entity of all sources of information available to the decision-maker: external cues, called _evidence_ and denoted $e$, but also any prior beliefs and values that could bias its judgment. The decision is made if (or when) the #acr("DV") exceeds the threshold. This formalism is at the same time conceptually simple and biologically grounded, as we shall see later.
+Binary decisions have only two possible outcomes. As a first approach, the associated process can be modeled as a comparison between a quantity, hereafter named a #acr("DV")  @goldNeuralBasisDecision2007, and a threshold (or criterion). The #acr("DV") represents the integration into a single conceptual entity of all sources of information available to the decision-maker: external cues, called _evidence_ and denoted $e$, but also any prior beliefs and values that could bias its judgment. Depending on the context, the #acr("DV") can either be externally observable (e.g. the score in a test) or available only to the decision-maker (e.g. the feeling of familiarity associated with an item in a memory study). A decision is made if (or when) the #acr("DV") exceeds the threshold. This formalism is at the same time conceptually simple and biologically grounded, as we shall see later.
 
 The following sections review several prominent models of binary decision-making.
 
 ===== Signal Detection Theory
 
-#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of an decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. A key virtue of #acr("SDT") is that it disentangles this ability, called _sensitivity_, from the decision-maker's tendency towards one of the possible responses regarless of the stimulus, called _bias_. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology, clinical medicine, neuroscience, and machine learning. For example, industry quality-control inspectors often detect fewer faulty items as their work day progresses. SDT demonstrated that this decrease in performance usually results from a change in response bias rather than a declining sensitivity.
+#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of a decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology @greenSignalDetectionTheory1966, clinical medicine, neuroscience, and machine learning.
 
 #acr("SDT") is applicable to any binary decision task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of binary decision task, called #acr("2AFC") in the context of experimental psychology, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
 
@@ -102,19 +91,67 @@ The following sections review several prominent models of binary decision-making
   table(
     columns: 3,
     table.header([*Signal*], [*Observer response: "absent"*], [*Observer response: "present"*]),
-    [Absent], [Correct Rejection], [False Alarm],
-    [Present], [Miss], [Hit],
+    [Absent], [Correct Rejection (TN)], [False Alarm (FP)],
+    [Present], [Miss (FN)], [Hit (TP)],
   ),
   caption: [
-    Categorization of possible responses in a binary decision task. Correct Rejection: correctly identifying the absence of a signal. False Alarm: Incorrectly detecting a signal when it is absent. Miss: Failing to detect a signal when it is present. Hit: Correctly detecting a signal when it is present.
+    Categorization of possible responses in a binary decision task. Correct Rejection (True Nagative): correctly identifying the absence of a signal. False Alarm (False Positive): incorrectly detecting a signal when it is absent. Miss (False Negative): failing to detect a signal when it is present. Hit (True Positive): correctly detecting a signal when it is present.
   ],
 ) <tab:sdt_outcomes>
 
-A major assumption of #acr("SDT") is that the evidence received at each trial can be modeled as a single scalar value drawn from one of two equal-variance Gaussian distributions: a noise distribution $cal(N)(mu_("noise"), sigma^2)$ when the signal is absent and a signal-plus-noise distribution $cal(N)(mu_("signal"), sigma^2)$ when it is present. These two distributions respectively describe
+#acr("SDT") assumes that the evidence $e$ obtained at each trial can be modeled as a single scalar value drawn from one of two probability distributions: a _noise distribution_ when the signal is absent and a _signal-plus-noise distribution_ when it is present. These two distributions respectively describe the values that $e$ can attain in the absence/presence of signal. In the general case, the two distributions will overlap, reflecting the task difficulty. In the standard equal-variance Gaussian version of #acr("SDT"), both distributions are assumed to be normal with equal variance, differing only in their respective means $mu_"noise"$ and $mu_"signal"$. To make a choice, the decision-maker sets a criterion $lambda$ along the evidence axis, and compares the value of $e$ (used as the #acr("DV")) to it. If $e>lambda$, the decision-maker responds "signal present"; otherwise, it responds "signal absent" (@fig:sdt_dist).
 
-In the general case, the two distributions will overlap, reflecting the task difficulty.
+Since the two distributions can be interpreted as likelihood functions for the evidence, an equivalent formulation of #acr("SDT") uses the likelihood ratio as the #acr("DV"). The numerator is the likelihood of obtaining a particular value of $e$ on a signal trial, and the denominator is the likelihood of obtaining the same value of $e$ on a noise trial (@eq:sdt_lr). The criterion $beta$ to which this #acr("DV") is compared is the likelihood ratio for the value of $e$ corresponding to the evidence criterion $lambda$ (@eq:sqt_beta).
 
-===== Single Probability Ratio Test
+$ "DV"(e) eq.triple P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
+
+$ beta = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
+
+The probability of responding "present" on signal trials is called the _hit rate_ $H$ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ $"FA"$ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both $H$  and $"FA"$ are areas under their respective normal curves.
+
+$ Phi(z) = P(X<=z) $ <eq:sdt_phi>
+
+$ z = (x-mu)/sigma $ <eq:sdt_z>
+
+$ H = "TPR" = P(e>lambda|"signal") = 1 - Phi((lambda - mu_"signal")/sigma) $ <eq:sdt_tpr>
+
+$ "FA" = "FPR" = P(e>lambda|"noise") = 1 - Phi((lambda - mu_"noise")/sigma) $ <eq:sdt_fpr>
+
+#acr("SDT")’s main virtue is its ability to disentangle two factors in a decision process: the tendency towards responding yes regarless of the evidence, called _bias_, and the ability to distinguish signal from noise, called _sensitivity_. For example, industry quality-control inspectors often detect fewer faulty items as their work day progresses. SDT demonstrated that this declining hit rate usually results from a change in response bias rather than a declining sensitivity @stanislawCalculationSignalDetection1999.
+
+Sensitivity is determined by the degree of overlap between the noise and signal distributions. One possible measure of sensitivity is $d′$, which corresponds to the distance between the means in standard deviation units. Two assumptions must be met for $d′$ to be a bias-free measure of sensibility: the noise and signal distributions must be normal (Gaussian) and have the same variance. It can be calculated using the inverse cumulative distribution function $Phi^(-1)$, which computes the standard score (_z-score_) associated to a probability (@eq:sdt_dprime).
+
+$
+  d' = (mu_"signal"-mu_"noise")/sigma = (u_"signal"-lambda)/sigma - (u_"noise"-lambda)/sigma = Phi^(-1)("H") - Phi^(-1)("FA")
+$ <eq:sdt_dprime>
+
+Bias is determined by the location of the criterion $lambda$ on the evidence axis. It can be quantified using either $beta$ (@eq:sqt_beta) or the distance $c$, measured in standard deviation units, between $lambda$ and the neutral point $N$ where distributions cross and neither response is favored (@eq:sdt_c). A lower or _liberal_ criterion ($beta<1$, $c<0$) biases the decision-maker towards "present" responses, while a higher or _conservative_ value ($beta>1$, $c>0$) has the opposite effect. An advantage of $c$ is that it is unaffected by changes in sensitivity, whereas $beta$ is not.
+
+$ lambda = mu_"noise" - sigma Phi^(-1)("FA") $
+
+$ N = (mu_"noise" + mu_"signal")/2 $
+
+$
+  c &= (lambda - N) / sigma = -Phi^(-1)("FA") - (mu_"signal" - mu_"noise")/ (2 sigma) = - (Phi^(-1)("H")+Phi^(-1)("FA"))/2
+$ <eq:sdt_c>
+
+#figure(
+  image("images/stanislawCalculationSignalDetection1999_1.png", width: 80%),
+  caption: [
+    Signal Detection Theory: hypothetical probability density functions (likelihoods) for the noise distribution $cal(N)(mu_"noise", sigma^2)$ and the signal distribution $cal(N)(mu_"signal", sigma^2)$ of the evidence, measured in arbitrary units. A "present" response is made for trials in which the evidence, used as the Decision Variable, exceeds the criterion $lambda$ (shaded region of the two distributions). Here, $mu_"noise"=0$, $mu_"signal"=2$, $sigma=1$ and $lambda=0.5$. The _hit rate_ or True Positive Rate (the probability of responding "present" on signal trials) equals the proportion of the signal distribution that exceeds the criterion ($H=0.9332$). The _false alarm rate_ or False Positive Rate (the probability of responding "present" on noise trials) equals the proportion of the noise distribution that exceeds the criterion ($"FA" = 0.3085$). Both distributions are normal and of equal variance, so $d'$ is a bias-free measure of sensibility ($d' = 2$). Response bias can be quantified by either the likelihood ratio $beta$ at the criterion location ($beta = 0.1295/0.3521 = 0.37$), or the distance $c$ between the criterion and the neutral point ($c = −0.5$). Adapted from @stanislawCalculationSignalDetection1999.
+  ],
+) <fig:sdt_dist>
+
+Another possible measure of sensibility uses the #acr("ROC") curve, which plots the True Positive Rate as a function of the False Positive Rate for all possible values of the criterion $lambda$. Computing the #acr("AUROC") is a non-parametric way to assess sensitivity independently of bias that is free from the equal-variance Gaussian assumptions needed for $d′$ to be bias-free.
+
+#figure(
+  image("images/michelConfidenceConsciousnessResearch2023_1.png", width: 70%),
+  caption: [
+    Signal Detection Theory: ROC curves connecting locations with constant $d′$. The major diagonal is called the “chance line” since the True Positive Rate and False Positive Rate are equal, meaning that the subject is performing at chance level. A conservative criterion decreases both TPR and FPR, and a liberal criterion increases them. Using the Area Under the ROC curve (AUROC) is a way to assess sensitivity independently of the decision criterion. Adapted from @michelConfidenceConsciousnessResearch2023.
+  ],
+) <fig:sdt_roc>
+
+===== Sequential Probability Ratio Test
 
 ===== Diffusion Decision Model
 

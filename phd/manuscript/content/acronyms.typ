@@ -6,13 +6,17 @@
 //  => include before content
 #init-acronyms((
   "2AFC": "Two-Alternative Forced Choice",
+  "AUROC": "Area Under the ROC curve",
   "DV": "Decision Variable",
+  "FPR": "False Positive Rate",
   "MAB": "Multi-Armed Bandit",
   "RDM": "Random Dot Motion",
+  "ROC": "Receiver Operating Characteristic",
   "RT": "Reaction Time",
   "SAT": "Speed-Accuracy Tradeoff",
   "SDT": "Signal Detection Theory",
-  "SPRT": "Single Probability Ratio Test",
+  "SPRT": "Sequential Probability Ratio Test",
+  "TPR": "True Positive Rate",
 ))
 
 // Acronyms
