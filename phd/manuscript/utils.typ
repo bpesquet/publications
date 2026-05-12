@@ -1,6 +1,20 @@
 #import "@preview/acrostiche:0.7.0"
 #import "@preview/nth:1.0.1"
 
+// Add the possibility of defining shorter captions for outlines.
+// See https://github.com/typst/typst/issues/1295 for discussion
+#let in-outline = state("in-outline", false)
+#let flex-caption(
+  short: none,
+  long: none,
+) = context {
+  if in-outline.get() {
+    short
+  } else {
+    long
+  }
+}
+
 #let template(
   title: [Your Title],
   author: "Author",
@@ -23,6 +37,13 @@
     // https://github.com/typst/typst/issues/2722
     pagebreak()
     it
+  }
+  show outline: it => {
+    // Add the possibility of defining shorter captions for outlines.
+    // See https://github.com/typst/typst/issues/1295 for discussion
+    in-outline.update(true)
+    it
+    in-outline.update(false)
   }
   body
 }

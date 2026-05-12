@@ -1,6 +1,7 @@
 #import "../../utils.typ"
 #import utils.acrostiche: acr, acrfull, acrpl, reset-acronym
 #import utils.nth: nth
+#import utils: flex-caption
 
 == The decision process
 
@@ -22,9 +23,12 @@ Examples of experimental scenarios associated to such _perceptual_ decisions are
 
 #figure(
   image("images/random_dot_motion.png", width: 75%),
-  caption: [
-    Examples of Random Dot Motion tasks with various movement coherence. _(a)_ $"coherence" = 0$: dots are moving randomly. _(b)_ $"coherence" = 0.5$: half of dots are moving to the right. _(c)_ $"coherence" = 1$: all dots are moving to the right.
-  ],
+  caption: flex-caption(
+    short: [Examples of Random Dot Motion tasks with various movement coherence.],
+    long: [
+      Examples of Random Dot Motion tasks with various movement coherence. _(a)_ $"coherence" = 0$: dots are moving randomly. _(b)_ $"coherence" = 0.5$: half of dots are moving to the right. _(c)_ $"coherence" = 1$: all dots are moving to the right.
+    ],
+  ),
 ) <fig:rdm>
 
 ==== Value-based decisions
@@ -35,9 +39,12 @@ Examples of experimental scenarios associated to such value-based decisions are 
 
 #figure(
   image("images/mileticNewModelDecision2021_1.png", width: 50%),
-  caption: [
-    Example of a two-armed bandit experimental task. Each trial starts with a fixation cross, followed by the presentation of the stimulus until a choice is made or allowed decision time is elapsed. The chosen option is briefly highlighted, then feedback based on probabilistic rewards is given to the subject. Adapted from @mileticNewModelDecision2021.
-  ],
+  caption: flex-caption(
+    short: [Example of a two-armed bandit experimental task.],
+    long: [
+      Example of a two-armed bandit experimental task. Each trial starts with a fixation cross, followed by the presentation of the stimulus until a choice is made or allowed decision time is elapsed. The chosen option is briefly highlighted, then feedback based on probabilistic rewards is given to the subject. Adapted from @mileticNewModelDecision2021.
+    ],
+  ),
 ) <fig:mab>
 
 ==== Time course of a decision
@@ -50,9 +57,12 @@ $ "RT" = T_e + T_d + T_r = T_"er" + T_d $ <eq:rt>
 
 #figure(
   image("images/myersPracticalIntroductionUsing2022_1.png", width: 75%),
-  caption: [
-    Decomposition of the Reaction Time associated with a decision. The RT is assumed to reflect the time required to encode the stimulus ($T_e$), the time to make a decision ($T_d$), and the time to execute the selected motor response ($T_r$). Adapted from @myersPracticalIntroductionUsing2022
-  ],
+  caption: flex-caption(
+    short: [Decomposition of the Reaction Time associated with a decision.],
+    long: [
+      Decomposition of the Reaction Time associated with a decision. The RT is assumed to reflect the time required to encode the stimulus ($T_e$), the time to make a decision ($T_d$), and the time to execute the selected motor response ($T_r$). Adapted from @myersPracticalIntroductionUsing2022
+    ],
+  ),
 ) <fig:rt>
 
 ==== Speed-Accuracy Tradeoff
@@ -94,12 +104,15 @@ The following sections review several prominent models of binary decision-making
     [Absent], [Correct Rejection (TN)], [False Alarm (FP)],
     [Present], [Miss (FN)], [Hit (TP)],
   ),
-  caption: [
-    Categorization of possible responses in a binary decision task. Correct Rejection (True Nagative): correctly identifying the absence of a signal. False Alarm (False Positive): incorrectly detecting a signal when it is absent. Miss (False Negative): failing to detect a signal when it is present. Hit (True Positive): correctly detecting a signal when it is present.
-  ],
+  caption: flex-caption(
+    short: [Categorization of possible responses in a binary decision task.],
+    long: [
+      Categorization of possible responses in a binary decision task. Correct Rejection (True Negative): correctly identifying the absence of a signal. False Alarm (False Positive): incorrectly detecting a signal when it is absent. Miss (False Negative): failing to detect a signal when it is present. Hit (True Positive): correctly detecting a signal when it is present.
+    ],
+  ),
 ) <tab:sdt_outcomes>
 
-#acr("SDT") assumes that the evidence $e$ obtained at each trial can be modeled as a single scalar value drawn from one of two probability distributions: a _noise distribution_ when the signal is absent and a _signal-plus-noise distribution_ when it is present. These two distributions respectively describe the values that $e$ can attain in the absence/presence of signal. In the general case, the two distributions will overlap, reflecting the task difficulty. In the standard equal-variance Gaussian version of #acr("SDT"), both distributions are assumed to be normal with equal variance, differing only in their respective means $mu_"noise"$ and $mu_"signal"$. To make a choice, the decision-maker sets a criterion $lambda$ along the evidence axis, and compares the value of $e$ (used as the #acr("DV")) to it. If $e>lambda$, the decision-maker responds "signal present"; otherwise, it responds "signal absent" (@fig:sdt_dist).
+#acr("SDT") assumes that the evidence $e$ obtained at each trial can be modeled as a single scalar value drawn from one of two probability distributions: a _noise distribution_ when the signal is absent and a _signal-plus-noise distribution_, or _signal distribution_, when it is present. These two distributions respectively describe the values that $e$ can attain in the absence/presence of signal. In the general case, the two distributions will overlap, reflecting the task difficulty. In the standard equal-variance Gaussian version of #acr("SDT"), both distributions are assumed to be normal with equal variance, differing only in their respective means $mu_"noise"$ and $mu_"signal"$. To make a choice, the decision-maker sets a criterion $lambda$ along the evidence axis, and compares the value of $e$ (used as the #acr("DV")) to it. If $e>lambda$, the decision-maker responds "signal present"; otherwise, it responds "signal absent" (@fig:sdt_dist).
 
 Since the two distributions can be interpreted as likelihood functions for the evidence, an equivalent formulation of #acr("SDT") uses the likelihood ratio as the #acr("DV"). The numerator is the likelihood of obtaining a particular value of $e$ on a signal trial, and the denominator is the likelihood of obtaining the same value of $e$ on a noise trial (@eq:sdt_lr). The criterion $beta$ to which this #acr("DV") is compared is the likelihood ratio for the value of $e$ corresponding to the evidence criterion $lambda$ (@eq:sqt_beta).
 
@@ -137,18 +150,24 @@ $ <eq:sdt_c>
 
 #figure(
   image("images/stanislawCalculationSignalDetection1999_1.png", width: 80%),
-  caption: [
-    Signal Detection Theory: hypothetical probability density functions (likelihoods) for the noise distribution $cal(N)(mu_"noise", sigma^2)$ and the signal distribution $cal(N)(mu_"signal", sigma^2)$ of the evidence, measured in arbitrary units. A "present" response is made for trials in which the evidence, used as the Decision Variable, exceeds the criterion $lambda$ (shaded region of the two distributions). Here, $mu_"noise"=0$, $mu_"signal"=2$, $sigma=1$ and $lambda=0.5$. The _hit rate_ or True Positive Rate (the probability of responding "present" on signal trials) equals the proportion of the signal distribution that exceeds the criterion ($H=0.9332$). The _false alarm rate_ or False Positive Rate (the probability of responding "present" on noise trials) equals the proportion of the noise distribution that exceeds the criterion ($"FA" = 0.3085$). Both distributions are normal and of equal variance, so $d'$ is a bias-free measure of sensibility ($d' = 2$). Response bias can be quantified by either the likelihood ratio $beta$ at the criterion location ($beta = 0.1295/0.3521 = 0.37$), or the distance $c$ between the criterion and the neutral point ($c = −0.5$). Adapted from @stanislawCalculationSignalDetection1999.
-  ],
+  caption: flex-caption(
+    short: [Signal Detection Theory: hypothetical probability density functions for the noise and signal distributions],
+    long: [
+      Signal Detection Theory: hypothetical probability density functions (likelihoods) for the noise distribution $cal(N)(mu_"noise", sigma^2)$ and the signal distribution $cal(N)(mu_"signal", sigma^2)$ of the evidence, measured in arbitrary units. A "present" response is made for trials in which the evidence, used as the Decision Variable, exceeds the criterion $lambda$ (shaded region of the two distributions). Here, $mu_"noise"=0$, $mu_"signal"=2$, $sigma=1$ and $lambda=0.5$. The _hit rate_ or True Positive Rate (the probability of responding "present" on signal trials) equals the proportion of the signal distribution that exceeds the criterion ($H=0.9332$). The _false alarm rate_ or False Positive Rate (the probability of responding "present" on noise trials) equals the proportion of the noise distribution that exceeds the criterion ($"FA" = 0.3085$). Both distributions are normal and of equal variance, so $d'$ is a bias-free measure of sensibility ($d' = 2$). Response bias can be quantified by either the likelihood ratio $beta$ at the criterion location ($beta = 0.1295/0.3521 = 0.37$), or the distance $c$ between the criterion and the neutral point ($c = −0.5$). Adapted from @stanislawCalculationSignalDetection1999.
+    ],
+  ),
 ) <fig:sdt_dist>
 
 Another possible measure of sensibility uses the #acr("ROC") curve, which plots the True Positive Rate as a function of the False Positive Rate for all possible values of the criterion $lambda$. Computing the #acr("AUROC") is a non-parametric way to assess sensitivity independently of bias that is free from the equal-variance Gaussian assumptions needed for $d′$ to be bias-free.
 
 #figure(
   image("images/michelConfidenceConsciousnessResearch2023_1.png", width: 70%),
-  caption: [
-    Signal Detection Theory: ROC curves connecting locations with constant $d′$. The major diagonal is called the “chance line” since the True Positive Rate and False Positive Rate are equal, meaning that the subject is performing at chance level. A conservative criterion decreases both TPR and FPR, and a liberal criterion increases them. Using the Area Under the ROC curve (AUROC) is a way to assess sensitivity independently of the decision criterion. Adapted from @michelConfidenceConsciousnessResearch2023.
-  ],
+  caption: flex-caption(
+    short: [Signal Detection Theory: ROC curves for different sensitivities],
+    long: [
+      Signal Detection Theory: ROC curves connecting locations with constant $d′$. The major diagonal is called the “chance line” since the True Positive Rate and False Positive Rate are equal, meaning that the subject is performing at chance level. A conservative criterion decreases both TPR and FPR, and a liberal criterion increases them. Using the Area Under the ROC curve (AUROC) is a way to assess sensitivity independently of the decision criterion. Adapted from @michelConfidenceConsciousnessResearch2023.
+    ],
+  ),
 ) <fig:sdt_roc>
 
 ===== Sequential Probability Ratio Test

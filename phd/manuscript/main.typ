@@ -1,5 +1,4 @@
-#import "utils.typ"
-#import utils: front-matter, main-matter, template
+#import "utils.typ": front-matter, main-matter, template
 
 #show: template.with(
   title: "My thesis title",
