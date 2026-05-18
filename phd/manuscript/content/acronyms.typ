@@ -8,6 +8,7 @@
   "2AFC": "Two-Alternative Forced Choice",
   "AUROC": "Area Under the ROC curve",
   "DV": "Decision Variable",
+  "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
   "MAB": "Multi-Armed Bandit",
   "RDM": "Random Dot Motion",
@@ -16,6 +17,7 @@
   "SAT": "Speed-Accuracy Tradeoff",
   "SDT": "Signal Detection Theory",
   "SPRT": "Sequential Probability Ratio Test",
+  "SSM": "Sequential Sampling Model",
   "TPR": "True Positive Rate",
 ))
 

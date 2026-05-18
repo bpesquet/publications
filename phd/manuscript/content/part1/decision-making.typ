@@ -65,7 +65,7 @@ $ "RT" = T_e + T_d + T_r = T_"er" + T_d $ <eq:rt>
   ),
 ) <fig:rt>
 
-==== Speed-Accuracy Tradeoff
+==== Speed-Accuracy Tradeoff <par:sat>
 
 Another criterion for studying decisions is the possibility of objectively evaluating their outcome. Some decisions have correct or optimal answers, to which the chosen alternatives can be compared in order to compute evaluation metrics like _accuracy_. This is typically the case for perceptual decisions, for which the expected results are controlled by the experimenter. On the other hand, some value-based decisions do not have objectively good or bad answers: for example, picking one’s favorite color. In that case, prior knowledge about the decision-maker would be necessary for accuracy to be computed.
 
@@ -170,7 +170,45 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
   ),
 ) <fig:sdt_roc>
 
+===== Sequential sampling
+
+#acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assume that the #acr("DV") is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of Decision Variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition (@fig:eam_family). Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM").
+
+#figure(
+  image("images/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
+  caption: flex-caption(
+    short: [The sequential sampling model family],
+    long: [The sequential sampling model family. Accumulator models, also known as race models, have several Decision Variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each DV). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the DVs are inversely correlated, a race model is equivalent to a random walk. Adapted from @ratcliffDiffusionDecisionModel2016.
+    ],
+  ),
+) <fig:eam_family>
+
 ===== Sequential Probability Ratio Test
+
+A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until the decision criterion is met. Thus, it can be envisioned as applying #acr("SDT") repeateadly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
+
+$
+  "DV"_t(e_1, e_2, ..., e_t) eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(i=1)^t log_e P(e_i|h_1)/P(e_i|h_2) = sum_(i=1)^t w_i
+$ <eq:sprt>
+
+This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $alpha$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $beta$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
+
+$ A = log_e (1-beta)/alpha $ <eq:sprt_A>
+
+$ B = log_e beta/(1-alpha) $  <eq:sprt_B>
+
+Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in vavor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
+
+A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other not (60/40). One of the coins is drawn from the bag: is it a trick ($h_1$) or a fair ($h_2$) coin? And how many tosses are needed for this decision? To answer these questions, each toss result $e_i$ is converted to a weight of evidence $w_i$ defined by @eq:sprt_coin.
+
+$
+  forall i in [1,t], w_i := cases(
+    log_e P(e="heads"|h_1)/P(e="heads"|h_2) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"head\""),
+    log_e P(e="tails"|h_1)/P(e="tails"|h_2) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
+  )
+$ <eq:sprt_coin>
+
+With the previously defined error rates, the minimum number of tosses needed to decide that the coin is a trick one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
 
 ===== Diffusion Decision Model
 
