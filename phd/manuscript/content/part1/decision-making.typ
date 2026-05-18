@@ -47,7 +47,7 @@ Examples of experimental scenarios associated to such value-based decisions are 
   ),
 ) <fig:mab>
 
-==== Time course of a decision
+==== Time course of a decision <par:decision_time_course>
 
 All decisions are made under a form of time pressure @forstmannSequentialSamplingModels2016: one simply cannot take hours to ponder over his or her socks collection, or wait indefinitely before accepting a PhD offering. A choice takes place at the end of a deliberation phase, in which available information is acquired and processed by the decision-maker. Many decisions are based on information that unfolds over time: for example, tasting wine before recognizing its grape variety. Even when all information is immediately available (for example, a chessboard observed by a player before choosing his or her next move), it generally has to be treated sequentially, reflecting the inability of the decision-maker's cognitive system to process all information simultaneously. Thus, the sequential nature of the decision process is a fundamental property of biological nervous systems @forstmannSequentialSamplingModels2016.
 
@@ -64,6 +64,8 @@ $ "RT" = T_e + T_d + T_r = T_"er" + T_d $ <eq:rt>
     ],
   ),
 ) <fig:rt>
+
+Decisions across many trials of the same task are often studied through _Response Time distributions_. A #acr("RT") distribution is the probability distribution of how long the decision-maker takes to respond across all trials. Since no two responses take exactly the same time, #acr("RT") can be envisioned as a random variable, and its distribution characterizes the full shape of response speed.
 
 ==== Speed-Accuracy Tradeoff <par:sat>
 
@@ -91,7 +93,7 @@ Binary decisions have only two possible outcomes. As a first approach, the assoc
 
 The following sections review several prominent models of binary decision-making.
 
-===== Signal Detection Theory
+===== Signal Detection Theory <par:sdt>
 
 #acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of a decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology @greenSignalDetectionTheory1966, clinical medicine, neuroscience, and machine learning.
 
@@ -199,7 +201,7 @@ $ B = log_e beta/(1-alpha) $  <eq:sprt_B>
 
 Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in vavor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
 
-A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other not (60/40). One of the coins is drawn from the bag: is it a trick ($h_1$) or a fair ($h_2$) coin? And how many tosses are needed for this decision? To answer these questions, each toss result $e_i$ is converted to a weight of evidence $w_i$ defined by @eq:sprt_coin.
+A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other not (60/40). One of the coins is drawn from the bag: is it a trick ($h_1$) or a fair ($h_2$) coin? And how many tosses are needed for this decision? To answer these questions, each toss result $e_i$ is converted to a weight of evidence $w_i$ defined by @eq:sprt_coin.
 
 $
   forall i in [1,t], w_i := cases(
@@ -211,6 +213,53 @@ $ <eq:sprt_coin>
 With the previously defined error rates, the minimum number of tosses needed to decide that the coin is a trick one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
 
 ===== Diffusion Decision Model
+
+Another prominent model of the decision process id the #acr("DDM"), also called Drift Diffusion Model @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a #acr("DV"), beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
+
+#figure(
+  image("images/forstmannSequentialSamplingModels2016_1.png", width: 90%),
+  caption: flex-caption(
+    short: [Diffusion Decision Model: schematic representation on a perceptual discrimination task],
+    long: [Diffusion Decision Model: schematic representation on a perceptual discrimination task (Random Dot Motion). Evidence is accumulated over time until the threshold associated with one of the responses ("left" here) is crossed. As the input which constitutes the evidence is noisy, the accumulation process is stochastic, mimicking a random walk or the Brownian motion of physical particles. Adapted from @forstmannSequentialSamplingModels2016.
+    ],
+  ),
+) <fig:ddm_dots>
+
+The core parameters of the #acr("DDM") are:
+
+- $z$, the starting point of evidence accumulation, represents the a priori bias favoring one of the two alternatives. In an unbiased setting, $z = 0$.
+- $a$, the symmetric decision boundary (threshold), implements the #acr("SAT"): increasing it results in fewer errors but also slower responses.
+- $v$ (sometimes denoted $mu$), the _drift rate_,  encodes the rate of evidence accumulation per unit of time (i.e. the average speed of evidence accumulation). Similarly to $d'$ (@par:sdt), it is an index of task difficulty or subject sensibility.
+- $sigma$, the noise magnitude, governs the importance of internal noise in the decision process.
+- $T_("er")$, the non-decision time (@par:decision_time_course), measures the time needed for peripheral processes such as stimulus encoding and motor response.
+
+Evidence accumulation in the #acr("DDM") is modeled as a stochastic differential equation (@eq:ddm).
+
+$ "dDV" = v"d"t + sigma"d"W $ <eq:ddm>
+
+The _drift term_ $v"d"t$ is the deterministic component, with $"d"t$ the time unit. The _diffusion term_ $sigma"d"W$ is the stochastic component, with $"d"W tilde cal(N)(0, "d"t)$ an increment of a Wiener process (Gaussian white noise). This term captures intra-trial variability in evidence sampling. An analogy is that of a particle doing a random walk between two walls. The drift term is the constant wind pushing the particle in one direction. The diffusion term is the turbulence deviating it randomly.
+
+The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy correlations (#acr("SAT")) in a single mechanistic framework with strong explanatory power (@fig:ddm_drift_bounds).
+
+#figure(
+  image("images/desenderConfidencePredictsSpeedaccuracy2019_1.jpg", width: 85%),
+  caption: flex-caption(
+    short: [Diffusion Decision Model: impact of drift rate and decision bound],
+    long: [Diffusion Decision Model: impact of drift rate $v$ and decision bound $a$ on Response Time. RT distributions for correct (upper bounds) and error (lower bounds) choices are depicted for different levels of drift rate and decision bound. _(A)_ A stronger drift rate yields faster decisions and higher accuracy. _(B)_ By increasing the separation between decision bounds, the probability of being correct increases, at the expense of longer RTs. Adapted from @desenderConfidencePredictsSpeedaccuracy2019.
+    ],
+  ),
+) <fig:ddm_drift_bounds>
+
+Originally designed in the 1970’s, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alco- hol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-deciaional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
+
+#figure(
+  image("images/forstmannSequentialSamplingModels2016_5.png", width: 100%),
+  caption: flex-caption(
+    short: [Diffusion Decision Model: fixed versus collapsing bounds],
+    long: [Diffusion Decision Model: fixed versus collapsing bound. _(a)_ The DDM with fixed (dashed) or collapsing (solid) decision boundaries. Models with collapsing bounds can terminate the evidence accumulation process earlier, resulting in faster decisions. _(b)_ Ways in which the models lead to different predictions for RT distributions. Adapted from @forstmannSequentialSamplingModels2016.
+    ],
+  ),
+) <fig:ddm_collapsing_bounds>
 
 ==== Multi-alternative decisions
 
