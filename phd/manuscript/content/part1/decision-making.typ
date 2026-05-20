@@ -22,7 +22,7 @@ Some decisions only involve the processing of sensory stimuli (visual, auditory,
 Examples of experimental scenarios associated to such _perceptual_ decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., ”sound present” vs. ”sound absent”).
 
 #figure(
-  image("images/random_dot_motion.png", width: 75%),
+  image("images/pesquetRDM.png", width: 75%),
   caption: flex-caption(
     short: [Examples of Random Dot Motion tasks with various movement coherence.],
     long: [
@@ -174,23 +174,32 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 
 ===== Sequential sampling
 
-#acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assume that the #acr("DV") is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of Decision Variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition (@fig:eam_family). Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM").
+#acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assume that the #acr("DV") is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of Decision Variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition. Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM") (@fig:eam_family, @fig:eam_comparison).
 
 #figure(
   image("images/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
   caption: flex-caption(
     short: [The sequential sampling model family],
-    long: [The sequential sampling model family. Accumulator models, also known as race models, have several Decision Variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each DV). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the DVs are inversely correlated, a race model is equivalent to a random walk. Adapted from @ratcliffDiffusionDecisionModel2016.
+    long: [The sequential sampling model family. Accumulator models, also known as _race models_, have several Decision Variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each DV). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the DVs are inversely correlated, a race model is equivalent to a random walk. Adapted from @ratcliffDiffusionDecisionModel2016.
     ],
   ),
 ) <fig:eam_family>
+
+#figure(
+  image("images/pesquetDDMRace.png", width: 75%),
+  caption: flex-caption(
+    short: [Illustration of the difference between single- and multi-accumulator models],
+    long: [Illustration of the difference between single- and multi-accumulator models of sequential decision-making. _(a)_ A single accumulator model has only one Decision Variable encoding both options. _(b)_ A multi-accumulator model uses several DVs (typically one per alternative) that run in parallel until one of them crosses the decision threshold, hence the name _race model_.
+    ],
+  ),
+) <fig:eam_comparison>
 
 ===== Sequential Probability Ratio Test
 
 A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until the decision criterion is met. Thus, it can be envisioned as applying #acr("SDT") repeateadly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
 
 $
-  "DV"_t(e_1, e_2, ..., e_t) eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(i=1)^t log_e P(e_i|h_1)/P(e_i|h_2) = sum_(i=1)^t w_i
+  "DV"_t(e_1, e_2, ..., e_t) eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w^(\(k\))
 $ <eq:sprt>
 
 This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $alpha$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $beta$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
@@ -199,18 +208,18 @@ $ A = log_e (1-beta)/alpha $ <eq:sprt_A>
 
 $ B = log_e beta/(1-alpha) $  <eq:sprt_B>
 
-Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in vavor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
+Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
 
-A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other not (60/40). One of the coins is drawn from the bag: is it a trick ($h_1$) or a fair ($h_2$) coin? And how many tosses are needed for this decision? To answer these questions, each toss result $e_i$ is converted to a weight of evidence $w_i$ defined by @eq:sprt_coin.
+A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e_k$ is converted to a weight of evidence $w^(\(k\))$ defined by @eq:sprt_coin.
 
 $
-  forall i in [1,t], w_i := cases(
-    log_e P(e="heads"|h_1)/P(e="heads"|h_2) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"head\""),
-    log_e P(e="tails"|h_1)/P(e="tails"|h_2) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
+  forall k in [1,t], w^(\(k\)) = cases(
+    log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
+    log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
 $ <eq:sprt_coin>
 
-With the previously defined error rates, the minimum number of tosses needed to decide that the coin is a trick one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
+With the previously defined error rates, the minimum number of tosses needed to decide that the coin is the biased one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
 
 ===== Diffusion Decision Model
 
@@ -250,7 +259,7 @@ The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy corr
   ),
 ) <fig:ddm_drift_bounds>
 
-Originally designed in the 1970’s, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alco- hol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-deciaional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
+Originally designed in the 1970’s @ratcliffTheoryMemoryRetrieval, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alco- hol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-deciaional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
 
 #figure(
   image("images/forstmannSequentialSamplingModels2016_5.png", width: 100%),
@@ -262,6 +271,46 @@ Originally designed in the 1970’s, the #acr("DDM") is being used by a growing 
 ) <fig:ddm_collapsing_bounds>
 
 ==== Multi-alternative decisions
+
+For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. While possible, extending it to multi-alternative choices requires substantial modifications @krajbichAttentionalDriftDiffusionModel2012. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $N$ options is proportional to $log_2 N$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
+
+The following sections review several models of multi-alternative decision making that take this issue into account.
+
+===== Multihypothesis Sequential Probability Ratio Test
+
+The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each ratio measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
+
+$ "DV"_(i,j)(e_1,e_é,...,e_t) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
+
+Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_n$ uses a set predefined tolerances $epsilon_(n,j)$ to define the pairwise thresholds (@eq:msprt_stop).
+
+$ forall j != n, "DV"_(n,j)(e_1,e_é,...,e_t) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
+
+For example, #acr("MSPRT") could be used to classify a coin as one of three types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $(3(3-1))/2 = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_("heads", "fair")^(\(k\))$ and $w_("heads", "tails")^(\(k\))$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+
+$
+  forall k in [1,t], w_("heads","fair")^(\(k\)) = cases(
+    log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
+    log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
+  )
+$ <eq:msprt_heads_fair>
+
+$
+  forall k in [1,t], w_("heads","tails")^(\(k\)) = cases(
+    log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("tails")) = log_e 0.6/0.3 approx 0.693 "if" text("toss gives \"heads\""),
+    log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("tails")) = log_e 0.4/0.7 approx -0.56 "if" text("toss gives \"tails\""),
+  )
+$ <eq:msprt_heads_tails>
+
+With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/epsilon approx 2.3$.
+
+===== Linear Ballistic Accumulator
+
+===== Advantage Linear Ballistic Accumulator
+
+===== Leaky Competing Accumulator
+
+===== Attractor models
 
 === Neural basis
 

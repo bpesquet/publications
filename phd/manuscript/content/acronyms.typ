@@ -12,6 +12,7 @@
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
   "MAB": "Multi-Armed Bandit",
+  "MSPRT": "Multihypothesis Sequential Probability Ratio Test",
   "RDM": "Random Dot Motion",
   "ROC": "Receiver Operating Characteristic",
   "RT": "Reaction Time",
