@@ -1,4 +1,4 @@
-#import "utils.typ": front-matter, main-matter, template
+#import "utils.typ": back-matter, front-matter, main-matter, template
 
 #show: template.with(
   title: "My thesis title",
@@ -24,6 +24,8 @@
 #include "content/conclusion.typ"
 
 // ---------- BACK ----------
+#show: back-matter
 
+#include "content/appendices.typ"
 // TODO: sort biblio alphabetically
 #bibliography("content/bibliography.bib")

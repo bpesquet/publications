@@ -73,3 +73,12 @@
   set math.equation(numbering: "(1)")
   body
 }
+
+#let back-matter(body) = {
+  // Without this, the header says "Chapter F"
+  counter(heading.where(level: 1)).update(0)
+  // Without this, the table of contents line says "Chapter F"
+  counter(heading).update(0)
+  set heading(numbering: none, supplement: [Appendix])
+  body
+}
