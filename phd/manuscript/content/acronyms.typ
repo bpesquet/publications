@@ -7,7 +7,8 @@
 #init-acronyms((
   "2AFC": "Two-Alternative Forced Choice",
   "AUROC": "Area Under the ROC curve",
-  "DDM": "Diffusion Decision Model",
+  "aDDM": "Attentional Diffusion Decision Model",
+  "DDM": "Diffusion Decision Model (a.k.a. Drift Diffusion Model)",
   "DV": "Decision Variable",
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",

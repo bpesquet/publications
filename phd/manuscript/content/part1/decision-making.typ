@@ -199,7 +199,7 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until the decision criterion is met. Thus, it can be envisioned as applying #acr("SDT") repeateadly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
 
 $
-  "DV"_t(e_1, e_2, ..., e_t) eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w^(\(k\))
+  "DV"_t eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w^(\(k\))
 $ <eq:sprt>
 
 This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $alpha$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $beta$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
@@ -221,7 +221,7 @@ $ <eq:sprt_coin>
 
 With the previously defined error rates, the minimum number of tosses needed to decide that the coin is the biased one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
 
-===== Diffusion Decision Model
+===== Diffusion Decision Model <par:ddm>
 
 Another prominent model of the decision process id the #acr("DDM"), also called Drift Diffusion Model @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a #acr("DV"), beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
 
@@ -272,7 +272,7 @@ Originally designed in the 1970’s @ratcliffTheoryMemoryRetrieval, the #acr("DD
 
 ==== Multi-alternative decisions
 
-For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. While possible, extending it to multi-alternative choices requires substantial modifications @krajbichAttentionalDriftDiffusionModel2012. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $N$ options is proportional to $log_2 N$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
+For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $N$ options is proportional to $log_2 N$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
 
 The following sections review several models of multi-alternative decision making that take this issue into account.
 
@@ -280,11 +280,11 @@ The following sections review several models of multi-alternative decision makin
 
 The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each ratio measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
 
-$ "DV"_(i,j)(e_1,e_é,...,e_t) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
+$ "DV"_(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
 
 Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_n$ uses a set predefined tolerances $epsilon_(n,j)$ to define the pairwise thresholds (@eq:msprt_stop).
 
-$ forall j != n, "DV"_(n,j)(e_1,e_é,...,e_t) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
+$ forall j != n, "DV"_(n,j) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
 
 For example, #acr("MSPRT") could be used to classify a coin as one of three types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $(3(3-1))/2 = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_("heads", "fair")^(\(k\))$ and $w_("heads", "tails")^(\(k\))$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
 
@@ -303,6 +303,45 @@ $
 $ <eq:msprt_heads_tails>
 
 With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/epsilon approx 2.3$.
+
+===== Attentional Diffusion Decision Model
+
+The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions @krajbichMultialternativeDriftdiffusionModel2011. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
+
+$ e_t^("left") = v . r^("left") + epsilon_t^("left") $ <eq:addm_e_left>
+
+$ e_t^("center") = theta . v . r^("center") + epsilon_t^("center") $ <eq:addm_e_center>
+
+$ e_t^("right") = theta . v . r^("right") + epsilon_t^("right") $ <eq:addm_e_right>
+
+The parameter $v$ is the drift rate controling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r^("left")$, $r^("center")$ and $r^("right")$ respectively denote the subjectives values (ratings) of each option expressed by the decision-maker beforehand. $epsilon_t$ is white Gaussian noise with variance $sigma^2$.
+
+The model uses one #acr("DV") per alternative based on the evidence accumulated for that option compared with the highest accumulated evidence for the others (@eq:addm_dv_left, @eq:addm_dv_center, @eq:addm_dv_right).
+
+$
+  "DV"_t^("left") = sum_(k=1)^t e_k^("left") - "max"(sum_(k=1)^t e_k^("center"),sum_(k=1)^t e_k^("right"))
+$ <eq:addm_dv_left>
+
+$
+  "DV"_t^("center") = sum_(k=1)^t e_k^("center") - "max"(sum_(k=1)^t e_k^("left"),sum_(k=1)^t e_k^("right"))
+$ <eq:addm_dv_center>
+
+$
+  "DV"_t^("right") = sum_(k=1)^t e_k^("right") - "max"(sum_(k=1)^t e_k^("left"),sum_(k=1)^t e_k^("center"))
+$ <eq:addm_dv_right>
+
+The decision is made once one of these #acrpl("DV") crosses a threshold. This "best versus next" approach provides a more accurate description of the decision-maker's behavior than the alternative "best versus average", in which the evidence accumulated for each option is compared to the average accumulated evidence for the others.
+
+#figure(
+  image("images/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
+  caption: flex-caption(
+    short: [Attentional Diffusion Decision Model: task and simulation],
+    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to make a decision. _(B)_ Simulation: Decision Variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the DVs hits the threshold, then that item is chosen (right item here). In this particular simulation, $r^("left") = 3$, $r^("center") = 5$ and $r^("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
+    ],
+  ),
+) <fig:addm>
+
+A variation of the #acr("aDDM") extends it to purchasing decisions, taking into account the prices for the different alternatives displayed to the decision-maker during the decision process @krajbichAttentionalDriftDiffusionModel2012.
 
 ===== Linear Ballistic Accumulator
 
