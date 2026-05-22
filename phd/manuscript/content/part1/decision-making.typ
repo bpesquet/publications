@@ -306,7 +306,7 @@ With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would st
 
 ===== Attentional Diffusion Decision Model
 
-The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions @krajbichMultialternativeDriftdiffusionModel2011. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
+The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
 
 $ e_t^("left") = v . r^("left") + epsilon_t^("left") $ <eq:addm_e_left>
 
@@ -344,6 +344,23 @@ The decision is made once one of these #acrpl("DV") crosses a threshold. This "b
 A variation of the #acr("aDDM") extends it to purchasing decisions, taking into account the prices for the different alternatives displayed to the decision-maker during the decision process @krajbichAttentionalDriftDiffusionModel2012.
 
 ===== Linear Ballistic Accumulator
+
+The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each accumulator $"DV"^(\(k\))$ begins at a starting point $z_k$ drawn uniformly from the interval $[0,A]$, $A in RR^+$ (@eq:lba_dv). The drift rate $v_k$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_k$ for accumulator $"DV"^k$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
+
+$ "DV"_t^(\(k\)) = v_k t + z_k $ <eq:lba_dv>
+
+$ T_k = (a-z_k)/v_k "with" v_k > 0 $ <eq:lba_t>
+
+#figure(
+  image("images/pesquetLBA.png", width: 75%),
+  caption: flex-caption(
+    short: [Linear Ballistic Model],
+    long: [Illustration of the Linear Ballictic Model from three alternatives A, B and C. Starting values $z_k$ for the $k=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, A]$ ($A=0.5$ here). Drift rates $v_k$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. Alternative $B$. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
+    ],
+  ),
+) <fig:lba>
+
+Despite its apparent simplicity, the #acr("LBA") model successfully accommodates empirical phenomena from binary and multiple choice tasks while being analytically tractable, computationally efficient.
 
 ===== Advantage Linear Ballistic Accumulator
 

@@ -12,6 +12,7 @@
   "DV": "Decision Variable",
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
+  "LBA": "Linear Ballistic Accumulator",
   "MAB": "Multi-Armed Bandit",
   "MSPRT": "Multihypothesis Sequential Probability Ratio Test",
   "RDM": "Random Dot Motion",
