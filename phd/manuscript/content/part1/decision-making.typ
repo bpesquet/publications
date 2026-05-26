@@ -5,21 +5,21 @@
 
 == The decision process
 
-Everyday, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding to embark oneself on a PhD.
+Every day, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding whether to pursue a PhD..
 
-Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neuronal points of view.
+Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neural perspectives.
 
 === Conceptual overview
 
-First of all, let's try to clearly define what we are talking about, disentangling key concepts along the way. A _decision_ can either be understood as a _process_, or as merely its _outcome_ (the observable result). In this study, we retain the former approach and define a decision as a deliberative process resulting in the commitment to one alternative (option) over others. The observable result of a decision (the selected option) will be called the _choice_ associated with it. All decisions are instances of a _decision-making_ process, which describes the inner workings leading to a choice. An analogy would be the weighting of available evidence by a jury (decision), adhering to a set of judicial rules and guidelines (decision-making) before settling on a verdict (choice),
+First of all, let us try to clearly define what we are talking about, disentangling key concepts along the way. A _decision_ can either be understood as a _process_, or as merely its _outcome_ (the observable result). In this study, we retain the former approach and define a decision as a deliberative process resulting in the commitment to one alternative (option) over others. The observable result of a decision (the selected option) will be called the _choice_ associated with it. All decisions are instances of a _decision-making_ process, which describes the inner workings leading to a choice. An analogy would be the weighting of available evidence by a jury (decision), adhering to a set of judicial rules and guidelines (decision-making) before settling on a verdict (choice).
 
-The following subsections introduce several keys dimensions of decisions.
+The following subsections introduce several key dimensions of decisions.
 
 ==== Perceptual decisions
 
 Some decisions only involve the processing of sensory stimuli (visual, auditory, olfactory, tactile or gustative signals), without needing any abstract representation on top of them.
 
-Examples of experimental scenarios associated to such _perceptual_ decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., ”sound present” vs. ”sound absent”).
+Examples of experimental scenarios associated with such _perceptual_ decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., "sound present" vs. "sound absent").
 
 #figure(
   image("images/pesquetRDM.png", width: 75%),
@@ -35,7 +35,7 @@ Examples of experimental scenarios associated to such _perceptual_ decisions are
 
 Other decisions require choosing between alternatives based on personal preferences or expected rewards. In that case, there is not always an intrinsically correct choice (e.g. expressing a preference between several food items). At their core is the notion of _value_, the subjective worth or desirability of an outcome. These abstract representations are first assigned to the available options, then a choice is made by comparing values @padoa-schioppaOrbitofrontalCortexNeural2017.
 
-Examples of experimental scenarios associated to such value-based decisions are #acr("MAB") or $k$-armed bandit problems, named by analogy to a casino slot machine with _k_ arms. Here, the decision-maker iteratively selects one of the multiple fixed options (e.g., arms or actions) in order to maximize a cumulative reward.
+Examples of experimental scenarios associated with such value-based decisions are #acr("MAB") or $k$-armed bandit problems, named by analogy to a casino slot machine with _k_ arms. Here, the decision-maker iteratively selects one of the multiple fixed options (e.g., arms or actions) in order to maximize a cumulative reward.
 
 #figure(
   image("images/mileticNewModelDecision2021_1.png", width: 50%),
@@ -49,7 +49,7 @@ Examples of experimental scenarios associated to such value-based decisions are 
 
 ==== Time course of a decision <par:decision_time_course>
 
-All decisions are made under a form of time pressure @forstmannSequentialSamplingModels2016: one simply cannot take hours to ponder over his or her socks collection, or wait indefinitely before accepting a PhD offering. A choice takes place at the end of a deliberation phase, in which available information is acquired and processed by the decision-maker. Many decisions are based on information that unfolds over time: for example, tasting wine before recognizing its grape variety. Even when all information is immediately available (for example, a chessboard observed by a player before choosing his or her next move), it generally has to be treated sequentially, reflecting the inability of the decision-maker's cognitive system to process all information simultaneously. Thus, the sequential nature of the decision process is a fundamental property of biological nervous systems @forstmannSequentialSamplingModels2016.
+All decisions are made under a form of time pressure @forstmannSequentialSamplingModels2016: one simply cannot take hours to ponder over his or her socks collection, or wait indefinitely before accepting a PhD offer. A choice takes place at the end of a deliberation phase, in which available information is acquired and processed by the decision-maker. Many decisions are based on information that unfolds over time: for example, tasting wine before recognizing its grape variety. Even when all information is immediately available (for example, a chessboard observed by a player before choosing his or her next move), it generally has to be treated sequentially, reflecting the inability of the decision-maker's cognitive system to process all information simultaneously. Thus, the sequential nature of the decision process is a fundamental property of biological nervous systems @forstmannSequentialSamplingModels2016.
 
 More formally, a decision can be envisioned as the mapping from a stimulus to a response. Time between stimulus and response execution is called #acr("RT") @forstmannSequentialSamplingModels2016 @myersPracticalIntroductionUsing2022. It can be decomposed into three parts: the time required to encode the stimulus ($T_e$), the time to make a decision ($T_d$), and the time to execute the selected response ($T_r$) (@fig:rt). The encoding and motor response time are typically combined into a single parameter, $T_"er"$, representing _non-decision time_.  (@eq:rt).
 
@@ -71,11 +71,11 @@ Decisions across many trials of the same task are often studied through _Respons
 
 Another criterion for studying decisions is the possibility of objectively evaluating their outcome. Some decisions have correct or optimal answers, to which the chosen alternatives can be compared in order to compute evaluation metrics like _accuracy_. This is typically the case for perceptual decisions, for which the expected results are controlled by the experimenter. On the other hand, some value-based decisions do not have objectively good or bad answers: for example, picking one’s favorite color. In that case, prior knowledge about the decision-maker would be necessary for accuracy to be computed.
 
-For decisions whose outcome can be assessed, the balance between #acr("RT") and accuracy is called the #acr("SAT"). It expresses a simple but unescapable fact: certainty takes time. Faster responses rely on potentially incomplete information and tend to be less accurate. On the contrary, integrating more evidence during the decision process generally improves accuracy but takes more time. This ubiquitous aspect of decision-making has been a phenomenon of interest in behavioral science for a long time @heitzSpeedaccuracyTradeoffHistory2014. The #acr("SAT") is at least partially under the decision-maker’s control: faster decisions can be prioritized at the expense of an higher error rate, and vice-versa @ratcliffDiffusionDecisionModel2016. As such, one must not only consider accuracy and speed, but also the interaction between them when studying decisions @myersPracticalIntroductionUsing2022.
+For decisions whose outcome can be assessed, the balance between #acr("RT") and accuracy is called the #acr("SAT"). It expresses a simple but unescapable fact: certainty takes time. Faster responses rely on potentially incomplete information and tend to be less accurate. On the contrary, integrating more evidence during the decision process generally improves accuracy but takes more time. This ubiquitous aspect of decision-making has been a phenomenon of interest in behavioral science for a long time @heitzSpeedaccuracyTradeoffHistory2014. The #acr("SAT") is at least partially under the decision-maker’s control: faster decisions can be prioritized at the expense of a higher error rate, and vice-versa @ratcliffDiffusionDecisionModel2016. As such, one must not only consider accuracy and speed, but also the interaction between them when studying decisions @myersPracticalIntroductionUsing2022.
 
 ==== Uncertainty
 
-Uncertainty (or incertitude) is an inherent part of almost all decisions. Generally speaking, it characterizes situations involving changing, noisy or unknown information. In the narrower context of decision-making, uncertainty refers to the variability in the representation of information during a decision @mamassianConfidenceForcedChoiceOther2020. Sources of uncertainty are indeed multiple. For example, driving one’s car requires processing different visual, auditory and vestibular inputs in order to adapt to a continuous stream of not-so-predictable external events (a child or an animal crossing the street, the car in front of yours breaking suddenly, and so on) @pougetConfidenceCertaintyDistinct2016. Furthermore, uncertainty can arise from imperfections in external signals (e.g. bad image quality in a classification task) or from internal limitations in the abilities of the decision-maker (e.g. added noise when processing signals).
+Uncertainty is an inherent part of almost all decisions. Generally speaking, it characterizes situations involving changing, noisy or unknown information. In the narrower context of decision-making, uncertainty refers to the variability in the representation of information during a decision @mamassianConfidenceForcedChoiceOther2020. Sources of uncertainty are indeed multiple. For example, driving one’s car requires processing different visual, auditory and vestibular inputs in order to adapt to a continuous stream of not-so-predictable external events (a child or an animal crossing the street, the car in front of yours breaking suddenly, and so on) @pougetConfidenceCertaintyDistinct2016. Furthermore, uncertainty can arise from imperfections in external signals (e.g. bad image quality in a classification task) or from internal limitations in the abilities of the decision-maker (e.g. added noise when processing signals).
 
 From the perspective of the decision-maker, uncertainty can be interpreted as a signal for adapting their behavior, according to the following dichotomy @yuUncertaintyNeuromodulationAttention2005 :
 
@@ -95,9 +95,9 @@ The following sections review several prominent models of binary decision-making
 
 ===== Signal Detection Theory <par:sdt>
 
-#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of a decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. Originally developped in the mid-#nth(20) century to assess how faithfully a radar operator was able to disinguish incoming threats (signal) from random interferences or electronical artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology @greenSignalDetectionTheory1966, clinical medicine, neuroscience, and machine learning.
+#acr("SDT") is a framework for understanding decision-making in the presence of uncertainty. It provides a mathematical and conceptual foundation for analyzing the capacity of a decision-maker — biological or artificial — to discriminate _signal_ (meaningful information) from  _noise_. Originally developed in the mid-#nth(20) century to assess how faithfully a radar operator was able to distinguish incoming threats (signal) from random interferences or electronic artefacts (noise), #acr("SDT") has since been applied to many fields, including cognitive psychology @greenSignalDetectionTheory1966, clinical medicine, neuroscience, and machine learning.
 
-#acr("SDT") is applicable to any binary decision task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of binary decision task, called #acr("2AFC") in the context of experimental psychology, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
+#acr("SDT") is applicable to any binary decision task in which an observer must judge whether the signal was present or absent from a single piece of evidence. Examples include testing the ability of a subject to detect a short tone (signal) in a background of white noise, or to assess items as already seen (signal) or new (noise) during a memory recognition test. In this kind of binary decision task, the response given by the decision-maker for each trial can be sorted in one of four categories (@tab:sdt_outcomes).
 
 #figure(
   table(
@@ -122,7 +122,7 @@ $ "DV"(e) eq.triple P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
 
 $ beta = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
 
-The probability of responding "present" on signal trials is called the _hit rate_ $H$ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ $"FA"$ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both $H$  and $"FA"$ are areas under their respective normal curves.
+The probability of responding "present" on signal trials is called the _hit rate_ $H$ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a given _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ $"FA"$ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both $H$  and $"FA"$ are areas under their respective normal curves.
 
 $ Phi(z) = P(X<=z) $ <eq:sdt_phi>
 
@@ -134,10 +134,10 @@ $ "FA" = "FPR" = P(e>lambda|"noise") = 1 - Phi((lambda - mu_"noise")/sigma) $ <e
 
 #acr("SDT")’s main virtue is its ability to disentangle two factors in a decision process: the tendency towards responding yes regarless of the evidence, called _bias_, and the ability to distinguish signal from noise, called _sensitivity_. For example, industry quality-control inspectors often detect fewer faulty items as their work day progresses. SDT demonstrated that this declining hit rate usually results from a change in response bias rather than a declining sensitivity @stanislawCalculationSignalDetection1999.
 
-Sensitivity is determined by the degree of overlap between the noise and signal distributions. One possible measure of sensitivity is $d′$, which corresponds to the distance between the means in standard deviation units. Two assumptions must be met for $d′$ to be a bias-free measure of sensibility: the noise and signal distributions must be normal (Gaussian) and have the same variance. It can be calculated using the inverse cumulative distribution function $Phi^(-1)$, which computes the standard score (_z-score_) associated to a probability (@eq:sdt_dprime).
+Sensitivity is determined by the degree of overlap between the noise and signal distributions. One possible measure of sensitivity is $d′$, which corresponds to the distance between the means in standard deviation units. Two assumptions must be met for $d′$ to be a bias-free measure of sensitivity: the noise and signal distributions must be normal (Gaussian) and have the same variance. It can be calculated using the inverse cumulative distribution function $Phi^(-1)$, which computes the standard score (_z-score_) associated with a probability (@eq:sdt_dprime).
 
 $
-  d' = (mu_"signal"-mu_"noise")/sigma = (u_"signal"-lambda)/sigma - (u_"noise"-lambda)/sigma = Phi^(-1)("H") - Phi^(-1)("FA")
+  d' = (mu_"signal"-mu_"noise")/sigma = (mu_"signal"-lambda)/sigma - (mu_"noise"-lambda)/sigma = Phi^(-1)("H") - Phi^(-1)("FA")
 $ <eq:sdt_dprime>
 
 Bias is determined by the location of the criterion $lambda$ on the evidence axis. It can be quantified using either $beta$ (@eq:sqt_beta) or the distance $c$, measured in standard deviation units, between $lambda$ and the neutral point $N$ where distributions cross and neither response is favored (@eq:sdt_c). A lower or _liberal_ criterion ($beta<1$, $c<0$) biases the decision-maker towards "present" responses, while a higher or _conservative_ value ($beta>1$, $c>0$) has the opposite effect. An advantage of $c$ is that it is unaffected by changes in sensitivity, whereas $beta$ is not.
@@ -174,7 +174,7 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 
 ===== Sequential sampling
 
-#acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assume that the #acr("DV") is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of Decision Variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition. Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM") (@fig:eam_family, @fig:eam_comparison).
+#acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assumes that the #acr("DV") is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of Decision Variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition. Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM") (@fig:eam_family, @fig:eam_comparison).
 
 #figure(
   image("images/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
@@ -196,7 +196,7 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 
 ===== Sequential Probability Ratio Test
 
-A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until the decision criterion is met. Thus, it can be envisioned as applying #acr("SDT") repeateadly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
+A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until one of the decision boundaries is crossed. Thus, it can be envisioned as applying #acr("SDT") repeatedly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
 
 $
   "DV"_t eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w_k
@@ -208,7 +208,7 @@ $ A = log_e (1-beta)/alpha $ <eq:sprt_A>
 
 $ B = log_e beta/(1-alpha) $  <eq:sprt_B>
 
-Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
+Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of at least $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
 
 A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e_k$ is converted to a weight of evidence $w_k$ defined by @eq:sprt_coin.
 
@@ -223,7 +223,7 @@ With the previously defined error rates, the minimum number of tosses needed to 
 
 ===== Diffusion Decision Model <par:ddm>
 
-Another prominent model of the decision process id the #acr("DDM"), also called Drift Diffusion Model @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a #acr("DV"), beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
+Another prominent model of the decision process id the #acr("DDM") @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise. The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a #acr("DV"), beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
 
 #figure(
   image("images/forstmannSequentialSamplingModels2016_1.png", width: 90%),
@@ -237,7 +237,7 @@ Another prominent model of the decision process id the #acr("DDM"), also called 
 The core parameters of the #acr("DDM") are:
 
 - $z$, the starting point of evidence accumulation, represents the a priori bias favoring one of the two alternatives. In an unbiased setting, $z = 0$.
-- $a$, the symmetric decision boundary (threshold), implements the #acr("SAT"): increasing it results in fewer errors but also slower responses.
+- $a$, the symmetric decision boundary (threshold), implements the #acr("SAT"): increasing it results in fewer errors but also slower responses. Evidence accumulates between $a$ and $-a$.
 - $v$ (sometimes denoted $mu$), the _drift rate_,  encodes the rate of evidence accumulation per unit of time (i.e. the average speed of evidence accumulation). Similarly to $d'$ (@par:sdt), it is an index of task difficulty or subject sensibility.
 - $sigma$, the noise magnitude, governs the importance of internal noise in the decision process.
 - $T_("er")$, the non-decision time (@par:decision_time_course), measures the time needed for peripheral processes such as stimulus encoding and motor response.
@@ -259,7 +259,7 @@ The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy corr
   ),
 ) <fig:ddm_drift_bounds>
 
-Originally designed in the 1970’s @ratcliffTheoryMemoryRetrieval, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alco- hol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-deciaional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
+Originally designed in the 1970s @ratcliffTheoryMemoryRetrieval, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alcohol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-decisional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
 
 #figure(
   image("images/forstmannSequentialSamplingModels2016_5.png", width: 100%),
@@ -280,13 +280,13 @@ The following sections review several models of multi-alternative decision makin
 
 The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each of the $N(N-1)$ #acrpl("DV") measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
 
-$ "DV"_t^(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
+$ "DV"_t^(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "where".i != j $ <eq:msprt>
 
 Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_n$ uses a set predefined tolerances $epsilon_(n,j)$ to define the pairwise thresholds (@eq:msprt_stop).
 
 $ forall j != n, "DV"^(n,j) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
 
-For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_k^("heads","fair")$ and $w_k^("heads","fair")$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_k^("heads","fair")$ and $w_k^("heads","tails")$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
 
 $
   forall k in [1,t], w_k^("heads","fair") = cases(
@@ -296,27 +296,27 @@ $
 $ <eq:msprt_heads_fair>
 
 $
-  forall k in [1,t], w_k^("heads","fair") = cases(
+  forall k in [1,t], w_k^("heads","tails") = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("tails")) = log_e 0.6/0.3 approx 0.693 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("tails")) = log_e 0.4/0.7 approx -0.56 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_tails>
 
-With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/0.1 approx 2.3$.
+With $epsilon_(n,j) = 0.1 forall (n,j) in {1,2,3}^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/0.1 approx 2.3$.
 
 ===== Linear Ballistic Accumulator <par:lba>
 
-The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each of the $N$ accumulators $"DV"^(\(n\))$ begins at a starting point $z_n$ drawn uniformly from the interval $[0,Z]$, $Z in RR^+$ (@eq:lba_dv). The drift rate $v_n$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_n$ for accumulator $"DV"^(\(n\))$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
+The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each of the $N$ accumulators, denoted $"DV"^(\(n\))$, begins at a starting point $z_n$ drawn uniformly from the interval $[0,Z]$, $Z in RR^+$ (@eq:lba_dv). The drift rate $v_n$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_n$ for accumulator $"DV"^(\(n\))$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
 
 $ "DV"_t^(\(n\)) = v_n t + z_n $ <eq:lba_dv>
 
-$ T_n = (a-z_n)/v_n "with" v_n > 0 $ <eq:lba_t>
+$ T_n = (a-z_n)/v_n "where" v_n > 0 $ <eq:lba_t>
 
 #figure(
   image("images/pesquetLBA.png", width: 75%),
   caption: flex-caption(
     short: [Linear Ballistic Accumulator],
-    long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_n$ for the $N=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_n$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. Alternative $B$. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
+    long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_n$ for the $N=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_n$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
     ],
   ),
 ) <fig:lba>
@@ -329,13 +329,13 @@ The independence of accumulators at the core of the #acr("LBA")'s architecture i
 
 The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
 
-$ e_t^("left") = v . r^("left") + epsilon_t^("left") $ <eq:addm_e_left>
+$ e_t^("left") = v r^("left") + epsilon_t^("left") $ <eq:addm_e_left>
 
-$ e_t^("center") = theta . v . r^("center") + epsilon_t^("center") $ <eq:addm_e_center>
+$ e_t^("center") = theta v r^("center") + epsilon_t^("center") $ <eq:addm_e_center>
 
-$ e_t^("right") = theta . v . r^("right") + epsilon_t^("right") $ <eq:addm_e_right>
+$ e_t^("right") = theta v r^("right") + epsilon_t^("right") $ <eq:addm_e_right>
 
-The parameter $v$ is the drift rate controling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r^("left")$, $r^("center")$ and $r^("right")$ respectively denote the subjectives values (ratings) of each option expressed by the decision-maker beforehand. $epsilon_t$ is white Gaussian noise with variance $sigma^2$.
+The parameter $v$ is the drift rate controlling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r^("left")$, $r^("center")$ and $r^("right")$ respectively denote the subjective values (ratings) of each option expressed by the decision-maker beforehand. $epsilon_t$ is Gaussian white noise with variance $sigma^2$.
 
 The model uses one #acr("DV") per alternative based on the evidence accumulated for that option compared with the highest accumulated evidence for the others (@eq:addm_dv_left, @eq:addm_dv_center, @eq:addm_dv_right).
 
@@ -366,11 +366,11 @@ A variation of the #acr("aDDM") extends it to purchasing decisions, taking into 
 
 ===== Advantage Linear Ballistic Accumulator
 
-The #acr("ALBA") is a model of sequential decision-making combining the mathematical framework of the #acr("LBA") model (@par:lba) with a value-difference encoding mechanism @vanravenzwaaijAccumulatingAdvantagesNew2020. In this model, each of the $N$ alternatives is associated with $N-1$ accumulators driven by the difference (“advantage”) in evidence versus another option. The drift rate $v^(i,j)$ for an accumulator tracking option $i$ over option $j$ is calculated using a sum a three terms (@eq:alba_drift).
+The #acr("ALBA") is a model of sequential decision-making combining the mathematical framework of the #acr("LBA") model (@par:lba) with a value-difference encoding mechanism @vanravenzwaaijAccumulatingAdvantagesNew2020. In this model, each of the $N$ alternatives is associated with $N-1$ accumulators driven by the difference (“advantage”) in evidence versus another option. The drift rate $v^(i,j)$ for an accumulator tracking option $i$ over option $j$ is calculated using a sum of three terms (@eq:alba_drift).
 
-$ v^(i,j) = w_D (S_i-S_J) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
+$ v^(i,j) = w_D (S_i-S_j) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
 
-The _advantage term_ $w_D (S_i-S_J)$ represents the difference between absolute evidence strengths $S_i$ and $S_J$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z^(i,j)$ independently and uniformly sampled from the interval $[0,Z]$ (@eq:alba_dv).
+The _advantage term_ $w_D (S_i-S_J)$ represents the difference between absolute evidence strengths $S_i$ and $S_J$, weighted by $w_D in RR^+$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options, weighted by $w_S in RR^+$. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z^(i,j)$ independently and uniformly sampled from the interval $[0,Z]$ (@eq:alba_dv).
 
 $ "DV"_t^(i,j) = v^(i,j) t + z^(i,j) $ <eq:alba_dv>
 
@@ -380,7 +380,7 @@ An alternative is selected when a sufficient number of accumulators associated w
   image("images/pesquetALBA.png", width: 90%),
   caption: flex-caption(
     short: [Advantage Linear Ballistic Accumulator],
-    long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulator cross their threshold $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators and option $A$ is selected after 1000 timesteps.
+    long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulators cross their thresholds $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators and option $A$ is selected after 1000 timesteps.
     ],
   ),
 ) <fig:alba>

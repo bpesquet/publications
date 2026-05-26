@@ -5,7 +5,6 @@
 // Must be called before any reference to acronyms
 //  => include before content
 #init-acronyms((
-  "2AFC": "Two-Alternative Forced Choice",
   "ALBA": "Advantage Linear Ballistic Accumulator",
   "AUROC": "Area Under the ROC curve",
   "aDDM": "Attentional Diffusion Decision Model",
