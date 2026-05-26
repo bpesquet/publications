@@ -199,7 +199,7 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until the decision criterion is met. Thus, it can be envisioned as applying #acr("SDT") repeateadly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
 
 $
-  "DV"_t eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w^(\(k\))
+  "DV"_t eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w_k
 $ <eq:sprt>
 
 This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $alpha$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $beta$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
@@ -210,10 +210,10 @@ $ B = log_e beta/(1-alpha) $  <eq:sprt_B>
 
 Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of about $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
 
-A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e_k$ is converted to a weight of evidence $w^(\(k\))$ defined by @eq:sprt_coin.
+A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e_k$ is converted to a weight of evidence $w_k$ defined by @eq:sprt_coin.
 
 $
-  forall k in [1,t], w^(\(k\)) = cases(
+  forall k in [1,t], w_k = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
@@ -270,7 +270,7 @@ Originally designed in the 1970’s @ratcliffTheoryMemoryRetrieval, the #acr("DD
   ),
 ) <fig:ddm_collapsing_bounds>
 
-==== Multi-alternative decisions
+==== Multi-alternative decisions <par:hicks_law>
 
 For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $N$ options is proportional to $log_2 N$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
 
@@ -278,33 +278,54 @@ The following sections review several models of multi-alternative decision makin
 
 ===== Multihypothesis Sequential Probability Ratio Test
 
-The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each ratio measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
+The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each of the $N(N-1)$ #acrpl("DV") measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
 
-$ "DV"_(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
+$ "DV"_t^(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "with".i != j $ <eq:msprt>
 
 Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_n$ uses a set predefined tolerances $epsilon_(n,j)$ to define the pairwise thresholds (@eq:msprt_stop).
 
-$ forall j != n, "DV"_(n,j) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
+$ forall j != n, "DV"^(n,j) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
 
-For example, #acr("MSPRT") could be used to classify a coin as one of three types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $(3(3-1))/2 = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_("heads", "fair")^(\(k\))$ and $w_("heads", "tails")^(\(k\))$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_k^("heads","fair")$ and $w_k^("heads","fair")$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
 
 $
-  forall k in [1,t], w_("heads","fair")^(\(k\)) = cases(
+  forall k in [1,t], w_k^("heads","fair") = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_fair>
 
 $
-  forall k in [1,t], w_("heads","tails")^(\(k\)) = cases(
+  forall k in [1,t], w_k^("heads","fair") = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("tails")) = log_e 0.6/0.3 approx 0.693 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("tails")) = log_e 0.4/0.7 approx -0.56 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_tails>
 
-With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/epsilon approx 2.3$.
+With $epsilon_(n,j) = 0.1 forall (n,j) in [1,3]^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/0.1 approx 2.3$.
+
+===== Linear Ballistic Accumulator <par:lba>
+
+The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each of the $N$ accumulators $"DV"^(\(n\))$ begins at a starting point $z_n$ drawn uniformly from the interval $[0,Z]$, $Z in RR^+$ (@eq:lba_dv). The drift rate $v_n$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_n$ for accumulator $"DV"^(\(n\))$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
+
+$ "DV"_t^(\(n\)) = v_n t + z_n $ <eq:lba_dv>
+
+$ T_n = (a-z_n)/v_n "with" v_n > 0 $ <eq:lba_t>
+
+#figure(
+  image("images/pesquetLBA.png", width: 75%),
+  caption: flex-caption(
+    short: [Linear Ballistic Accumulator],
+    long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_n$ for the $N=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_n$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. Alternative $B$. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
+    ],
+  ),
+) <fig:lba>
+
+Despite its simplicity, the #acr("LBA") model successfully accommodates empirical phenomena from binary and multiple choice tasks while being analytically tractable and computationally efficient.
 
 ===== Attentional Diffusion Decision Model
+
+The independence of accumulators at the core of the #acr("LBA")'s architecture is a mathematical convenience that may not reflect the biological reality of competitive decision circuits, empirically characterized by mutual inhibition mechanisms @wangProbabilisticDecisionMaking2002. This model therefore sacrifices neural plausibility for tractability. Other models of sequential decision-making relax this independence assumption and introduce relationships between accumulators during the decision process.
 
 The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
 
@@ -343,26 +364,26 @@ The decision is made once one of these #acrpl("DV") crosses a threshold. This "b
 
 A variation of the #acr("aDDM") extends it to purchasing decisions, taking into account the prices for the different alternatives displayed to the decision-maker during the decision process @krajbichAttentionalDriftDiffusionModel2012.
 
-===== Linear Ballistic Accumulator
+===== Advantage Linear Ballistic Accumulator
 
-The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each accumulator $"DV"^(\(k\))$ begins at a starting point $z_k$ drawn uniformly from the interval $[0,A]$, $A in RR^+$ (@eq:lba_dv). The drift rate $v_k$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_k$ for accumulator $"DV"^k$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
+The #acr("ALBA") is a model of sequential decision-making combining the mathematical framework of the #acr("LBA") model (@par:lba) with a value-difference encoding mechanism @vanravenzwaaijAccumulatingAdvantagesNew2020. In this model, each of the $N$ alternatives is associated with $N-1$ accumulators driven by the difference (“advantage”) in evidence versus another option. The drift rate $v^(i,j)$ for an accumulator tracking option $i$ over option $j$ is calculated using a sum a three terms (@eq:alba_drift).
 
-$ "DV"_t^(\(k\)) = v_k t + z_k $ <eq:lba_dv>
+$ v^(i,j) = w_D (S_i-S_J) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
 
-$ T_k = (a-z_k)/v_k "with" v_k > 0 $ <eq:lba_t>
+The _advantage term_ $w_D (S_i-S_J)$ represents the difference between absolute evidence strengths $S_i$ and $S_J$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z^(i,j)$ independently and uniformly sampled from the interval $[0,Z]$ (@eq:alba_dv).
+
+$ "DV"_t^(i,j) = v^(i,j) t + z^(i,j) $ <eq:alba_dv>
+
+An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $"DV"^(n,j)$ favoring option $n$ over its rivals must reach their respective thresholds $a^(n,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
 
 #figure(
-  image("images/pesquetLBA.png", width: 75%),
+  image("images/pesquetALBA.png", width: 90%),
   caption: flex-caption(
-    short: [Linear Ballistic Model],
-    long: [Illustration of the Linear Ballictic Model from three alternatives A, B and C. Starting values $z_k$ for the $k=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, A]$ ($A=0.5$ here). Drift rates $v_k$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. Alternative $B$. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
+    short: [Advantage Linear Ballistic Accumulator],
+    long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulator cross their threshold $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators and option $A$ is selected after 1000 timesteps.
     ],
   ),
-) <fig:lba>
-
-Despite its apparent simplicity, the #acr("LBA") model successfully accommodates empirical phenomena from binary and multiple choice tasks while being analytically tractable, computationally efficient.
-
-===== Advantage Linear Ballistic Accumulator
+) <fig:alba>
 
 ===== Leaky Competing Accumulator
 
