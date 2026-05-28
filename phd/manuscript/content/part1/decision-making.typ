@@ -387,6 +387,10 @@ An alternative is selected when a sufficient number of accumulators associated w
 
 ===== Leaky Competing Accumulator
 
+The #acr("LCA") is a biologically grounded model of sequential decision-making that incorporates leakage, lateral inhibition and noise into the accumulation process @usherTimeCoursePerceptual2001. The dynamics of evidence accumulation are expressed as coupled stochastic differential equations.
+
+$$
+
 ===== Attractor models
 
 === Neural basis

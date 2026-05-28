@@ -13,6 +13,7 @@
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
   "LBA": "Linear Ballistic Accumulator",
+  "LCA": "Leaky Competing Accumulator",
   "MAB": "Multi-Armed Bandit",
   "MSPRT": "Multihypothesis Sequential Probability Ratio Test",
   "RDM": "Random Dot Motion",
