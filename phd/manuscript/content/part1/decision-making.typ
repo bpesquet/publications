@@ -118,36 +118,36 @@ The following sections review several prominent models of binary decision-making
 
 Since the two distributions can be interpreted as likelihood functions for the evidence, an equivalent formulation of #acr("SDT") uses the likelihood ratio as the #acr("DV"). The numerator is the likelihood of obtaining a particular value of $e$ on a signal trial, and the denominator is the likelihood of obtaining the same value of $e$ on a noise trial (@eq:sdt_lr). The criterion $beta$ to which this #acr("DV") is compared is the likelihood ratio for the value of $e$ corresponding to the evidence criterion $lambda$ (@eq:sqt_beta).
 
-$ "DV"(e) eq.triple P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
+$ "DV" eq.triple P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
 
 $ beta = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
 
-The probability of responding "present" on signal trials is called the _hit rate_ $H$ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a given _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ $"FA"$ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both $H$  and $"FA"$ are areas under their respective normal curves.
+The probability of responding "present" on signal trials is called the _hit rate_ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a given _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both #acr("TPR") and #acr("FPR") are areas under their respective normal curves.
 
 $ Phi(z) = P(X<=z) $ <eq:sdt_phi>
 
 $ z = (x-mu)/sigma $ <eq:sdt_z>
 
-$ H = "TPR" = P(e>lambda|"signal") = 1 - Phi((lambda - mu_"signal")/sigma) $ <eq:sdt_tpr>
+$ "TPR" = P(e>lambda|"signal") = 1 - Phi((lambda - mu_"signal")/sigma) $ <eq:sdt_tpr>
 
-$ "FA" = "FPR" = P(e>lambda|"noise") = 1 - Phi((lambda - mu_"noise")/sigma) $ <eq:sdt_fpr>
+$ "FPR" = P(e>lambda|"noise") = 1 - Phi((lambda - mu_"noise")/sigma) $ <eq:sdt_fpr>
 
 #acr("SDT")’s main virtue is its ability to disentangle two factors in a decision process: the tendency towards responding yes regarless of the evidence, called _bias_, and the ability to distinguish signal from noise, called _sensitivity_. For example, industry quality-control inspectors often detect fewer faulty items as their work day progresses. SDT demonstrated that this declining hit rate usually results from a change in response bias rather than a declining sensitivity @stanislawCalculationSignalDetection1999.
 
 Sensitivity is determined by the degree of overlap between the noise and signal distributions. One possible measure of sensitivity is $d′$, which corresponds to the distance between the means in standard deviation units. Two assumptions must be met for $d′$ to be a bias-free measure of sensitivity: the noise and signal distributions must be normal (Gaussian) and have the same variance. It can be calculated using the inverse cumulative distribution function $Phi^(-1)$, which computes the standard score (_z-score_) associated with a probability (@eq:sdt_dprime).
 
 $
-  d' = (mu_"signal"-mu_"noise")/sigma = (mu_"signal"-lambda)/sigma - (mu_"noise"-lambda)/sigma = Phi^(-1)("H") - Phi^(-1)("FA")
+  d' = (mu_"signal"-mu_"noise")/sigma = (mu_"signal"-lambda)/sigma - (mu_"noise"-lambda)/sigma = Phi^(-1)("TPR") - Phi^(-1)("FPR")
 $ <eq:sdt_dprime>
 
 Bias is determined by the location of the criterion $lambda$ on the evidence axis. It can be quantified using either $beta$ (@eq:sqt_beta) or the distance $c$, measured in standard deviation units, between $lambda$ and the neutral point $N$ where distributions cross and neither response is favored (@eq:sdt_c). A lower or _liberal_ criterion ($beta<1$, $c<0$) biases the decision-maker towards "present" responses, while a higher or _conservative_ value ($beta>1$, $c>0$) has the opposite effect. An advantage of $c$ is that it is unaffected by changes in sensitivity, whereas $beta$ is not.
 
-$ lambda = mu_"noise" - sigma Phi^(-1)("FA") $
+$ lambda = mu_"noise" - sigma Phi^(-1)("FPR") $
 
 $ N = (mu_"noise" + mu_"signal")/2 $
 
 $
-  c &= (lambda - N) / sigma = -Phi^(-1)("FA") - (mu_"signal" - mu_"noise")/ (2 sigma) = - (Phi^(-1)("H")+Phi^(-1)("FA"))/2
+  c &= (lambda - N) / sigma = -Phi^(-1)("FPR") - (mu_"signal" - mu_"noise")/ (2 sigma) = - (Phi^(-1)("TPR")+Phi^(-1)("FPR"))/2
 $ <eq:sdt_c>
 
 #figure(
@@ -155,7 +155,7 @@ $ <eq:sdt_c>
   caption: flex-caption(
     short: [Signal Detection Theory: hypothetical probability density functions for the noise and signal distributions],
     long: [
-      Signal Detection Theory: hypothetical probability density functions (likelihoods) for the noise distribution $cal(N)(mu_"noise", sigma^2)$ and the signal distribution $cal(N)(mu_"signal", sigma^2)$ of the evidence, measured in arbitrary units. A "present" response is made for trials in which the evidence, used as the Decision Variable, exceeds the criterion $lambda$ (shaded region of the two distributions). Here, $mu_"noise"=0$, $mu_"signal"=2$, $sigma=1$ and $lambda=0.5$. The _hit rate_ or True Positive Rate (the probability of responding "present" on signal trials) equals the proportion of the signal distribution that exceeds the criterion ($H=0.9332$). The _false alarm rate_ or False Positive Rate (the probability of responding "present" on noise trials) equals the proportion of the noise distribution that exceeds the criterion ($"FA" = 0.3085$). Both distributions are normal and of equal variance, so $d'$ is a bias-free measure of sensibility ($d' = 2$). Response bias can be quantified by either the likelihood ratio $beta$ at the criterion location ($beta = 0.1295/0.3521 = 0.37$), or the distance $c$ between the criterion and the neutral point ($c = −0.5$). Adapted from @stanislawCalculationSignalDetection1999.
+      Signal Detection Theory: hypothetical probability density functions (likelihoods) for the noise distribution $cal(N)(mu_"noise", sigma^2)$ and the signal distribution $cal(N)(mu_"signal", sigma^2)$ of the evidence, measured in arbitrary units. A "present" response is made for trials in which the evidence, used as the Decision Variable, exceeds the criterion $lambda$ (shaded region of the two distributions). Here, $mu_"noise"=0$, $mu_"signal"=2$, $sigma=1$ and $lambda=0.5$. The _hit rate_ or True Positive Rate (the probability of responding "present" on signal trials) equals the proportion of the signal distribution that exceeds the criterion ($"TPR"=0.9332$). The _false alarm rate_ or False Positive Rate (the probability of responding "present" on noise trials) equals the proportion of the noise distribution that exceeds the criterion ($"FPR" = 0.3085$). Both distributions are normal and of equal variance, so $d'$ is a bias-free measure of sensibility ($d' = 2$). Response bias can be quantified by either the likelihood ratio $beta$ at the criterion location ($beta = 0.1295/0.3521 = 0.37$), or the distance $c$ between the criterion and the neutral point ($c = −0.5$). Adapted from @stanislawCalculationSignalDetection1999.
     ],
   ),
 ) <fig:sdt_dist>
@@ -199,7 +199,7 @@ Another possible measure of sensibility uses the #acr("ROC") curve, which plots 
 A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single #acr("DV") based on the likelihood ratio of the two alternatives $h_1$ and $h_2$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until one of the decision boundaries is crossed. Thus, it can be envisioned as applying #acr("SDT") repeatedly to a stream of evidence $e_1, e_2, ..., e_t$ (@eq:sprt).
 
 $
-  "DV"_t eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w_k
+  "DV" eq.triple log_e P(e_1, e_2, ..., e_t|h_1)/P(e_1, e_2, ..., e_t|h_2) = sum_(k=1)^t log_e P(e_k|h_1)/P(e_k|h_2) = sum_(k=1)^t w_k
 $ <eq:sprt>
 
 This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $alpha$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $beta$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
@@ -208,7 +208,7 @@ $ A = log_e (1-beta)/alpha $ <eq:sprt_A>
 
 $ B = log_e beta/(1-alpha) $  <eq:sprt_B>
 
-Foe example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of at least $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
+For example, with $alpha=0.05$ and $beta = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of at least $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $alpha$) pushes $A$ higher, demanding more evidence before committing.
 
 A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e_k$ is converted to a weight of evidence $w_k$ defined by @eq:sprt_coin.
 
@@ -242,11 +242,11 @@ The core parameters of the #acr("DDM") are:
 - $sigma$, the noise magnitude, governs the importance of internal noise in the decision process.
 - $T_("er")$, the non-decision time (@par:decision_time_course), measures the time needed for peripheral processes such as stimulus encoding and motor response.
 
-Evidence accumulation in the #acr("DDM") is modeled as a stochastic differential equation (@eq:ddm).
+Evidence accumulation in the #acr("DDM") is modeled as a noisy stochastic process. For each time $t$, the #acr("DV") corresponds to a scalar-valued random variable $X_t$ whose evolution is governed by the stochastic differential equation of arithmetic Brownian motion (@eq:ddm). For a defined noise trajectory $w in Omega$, each realization $x_t = X_t (omega)$ produces a scalar-valued path over time.
 
-$ "dDV" = v"d"t + sigma"d"W $ <eq:ddm>
+$ "d"X_t = v"d"t + sigma"d"W_t $ <eq:ddm>
 
-The _drift term_ $v"d"t$ is the deterministic component, with $"d"t$ the time unit. The _diffusion term_ $sigma"d"W$ is the stochastic component, with $"d"W tilde cal(N)(0, "d"t)$ an increment of a Wiener process (Gaussian white noise). This term captures intra-trial variability in evidence sampling. An analogy is that of a particle doing a random walk between two walls. The drift term is the constant wind pushing the particle in one direction. The diffusion term is the turbulence deviating it randomly.
+The _drift term_ $v"d"t$ is the deterministic component, with $"d"t$ an infinitesimal time step. The _diffusion term_ $sigma"d"W_t$ is the stochastic component, with $"d"W_t tilde cal(N)(0, "d"t)$ a infinitesimal increment of a Wiener process (Gaussian white noise). This term captures intra-trial variability in evidence sampling. Evidence is not accumulated deterministically, but drifts on average in one direction while fluctuating randomly. An analogy is that of a particle doing a random walk between two walls. The drift term is the constant wind pushing the particle in one direction. The diffusion term is the turbulence deviating it randomly.
 
 The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy correlations (#acr("SAT")) in a single mechanistic framework with strong explanatory power (@fig:ddm_drift_bounds).
 
@@ -272,51 +272,53 @@ Originally designed in the 1970s @ratcliffTheoryMemoryRetrieval, the #acr("DDM")
 
 ==== Multi-alternative decisions <par:hicks_law>
 
-For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $N$ options is proportional to $log_2 N$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
+For all its qualities, the #acr("DDM") has several limitations. One of the most notable is that it is designed for binary decisions. Indeed, modeling decisions involving more than two alternatives is not as straightforward as it may seem. Empirical results demonstrate that increasing the number of options will increase the decision time _logarithmically_: the average time taken to choose between $n$ options is proportional to $log_2 n$ @brownSimplestCompleteModel2008. This finding is referred to as Hick-Hyman law or Hick's law. On the contrary, simple race models with one accumulator per possible option produce the opposite effect: more accumulators lead to faster #acrpl("RT").
 
 The following sections review several models of multi-alternative decision making that take this issue into account.
 
 ===== Multihypothesis Sequential Probability Ratio Test
 
-The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $N$ competing hypotheses $h_n, n in [1,N]$, each of the $N(N-1)$ #acrpl("DV") measures how much more the evidence supports $h_i$ over $h_j$ (@eq:msprt).
-
-$ "DV"_t^(i,j) = sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) "where".i != j $ <eq:msprt>
-
-Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_n$ uses a set predefined tolerances $epsilon_(n,j)$ to define the pairwise thresholds (@eq:msprt_stop).
-
-$ forall j != n, "DV"^(n,j) >= log_e 1/epsilon_(n,j) $ <eq:msprt_stop>
-
-For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_k^("heads","fair")$ and $w_k^("heads","tails")$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as #acrpl("DV"). For a set of $n$ competing hypotheses $h_i, i in [1,n]$, each of the $n(n-1)$ #acrpl("DV") measures how much more the evidence supports $h_i$ over another hypothesis (@eq:msprt).
 
 $
-  forall k in [1,t], w_k^("heads","fair") = cases(
+  "DV"_(t|i,j) eq.triple sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) = sum_(k=1)^t w_(k|i,j) "where" (i,j) in [1,N]^2 "and" i != j
+$ <eq:msprt>
+
+Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_i$ uses a set of predefined tolerances $epsilon_(i,j)$ to define the pairwise thresholds (@eq:msprt_stop).
+
+$ forall j != i, sum_(k=1)^t log_e P(e_k|h_i)/P(e_k|h_j) >= log_e 1/epsilon_(i,j) $ <eq:msprt_stop>
+
+For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e_k$ is converted to two separate weights of evidence $w_(k|"heads","fair")$ and $w_(k|"heads","tails")$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+
+$
+  forall k in [1,t], w_(k|"heads","fair") = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_fair>
 
 $
-  forall k in [1,t], w_k^("heads","tails") = cases(
+  forall k in [1,t], w_(k|"heads","tails") = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("tails")) = log_e 0.6/0.3 approx 0.693 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("tails")) = log_e 0.4/0.7 approx -0.56 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_tails>
 
-With $epsilon_(n,j) = 0.1 forall (n,j) in {1,2,3}^2 "and" n!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/0.1 approx 2.3$.
+With $epsilon_(i,j) = 0.1 forall (i,j) in {1,2,3}^2 "and" i!=j$, the test would stop when any #acr("DV") becomes greater or equal than $log 1/0.1 approx 2.3$.
 
 ===== Linear Ballistic Accumulator <par:lba>
 
-The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each of the $N$ accumulators, denoted $"DV"^(\(n\))$, begins at a starting point $z_n$ drawn uniformly from the interval $[0,Z]$, $Z in RR^+$ (@eq:lba_dv). The drift rate $v_n$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_n$ for accumulator $"DV"^(\(n\))$ to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
+The #acr("LBA") is a model of sequential decision-making based on a race between multiple independent accumulators (one per alternative) @brownSimplestCompleteModel2008. Evidence accumulates linearly and deterministically (hence the name "ballistic") towards a common threshold $a$. Instead of within-trial noise, the model relies on between-trial variability: each of the $n$ accumulators begins at a starting point $z_i$ drawn uniformly from the interval $[0,Z]$, $Z in RR^+$ (@eq:lba_dv). The drift rate $v_i$ for each accumulator is drawn independently on each trial from a normal distribution $cal(N)(mu, s^2)$. The time $T_i$ for the $i$th accumulator to reach the threshold $a$ is determined by its initial conditions (@eq:lba_t, @fig:lba).
 
-$ "DV"_t^(\(n\)) = v_n t + z_n $ <eq:lba_dv>
+$ "DV"_(t|i) eq.triple v_i t + z_i $ <eq:lba_dv>
 
-$ T_n = (a-z_n)/v_n "where" v_n > 0 $ <eq:lba_t>
+$ T_i = (a-z_i)/v_i "where" v_i > 0 $ <eq:lba_t>
 
 #figure(
   image("images/pesquetLBA.png", width: 75%),
   caption: flex-caption(
     short: [Linear Ballistic Accumulator],
-    long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_n$ for the $N=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_n$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
+    long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_i$ for the $n=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_i$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
     ],
   ),
 ) <fig:lba>
@@ -327,28 +329,28 @@ Despite its simplicity, the #acr("LBA") model successfully accommodates empirica
 
 The independence of accumulators at the core of the #acr("LBA")'s architecture is a mathematical convenience that may not reflect the biological reality of competitive decision circuits, empirically characterized by mutual inhibition mechanisms @wangProbabilisticDecisionMaking2002. This model therefore sacrifices neural plausibility for tractability. Other models of sequential decision-making relax this independence assumption and introduce relationships between accumulators during the decision process.
 
-The #acr("aDDM") is a generalization of the #acr("DDM") to trinary value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. For example, when the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
+The #acr("aDDM") is a generalization of the #acr("DDM") to multi-alternative value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. Let us consider a trinary choice between items as an example. When the decision-maker is looking at the item on the left, the respective evidence $e_t$ for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
 
-$ e_t^("left") = v r^("left") + epsilon_t^("left") $ <eq:addm_e_left>
+$ e_(t|"left") = v r_("left") + epsilon_(t|"left") $ <eq:addm_e_left>
 
-$ e_t^("center") = theta v r^("center") + epsilon_t^("center") $ <eq:addm_e_center>
+$ e_(t|"center") = theta v r_("center") + epsilon_(t|"center") $ <eq:addm_e_center>
 
-$ e_t^("right") = theta v r^("right") + epsilon_t^("right") $ <eq:addm_e_right>
+$ e_(t|"right") = theta v r_("right") + epsilon_(t|"right") $ <eq:addm_e_right>
 
-The parameter $v$ is the drift rate controlling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r^("left")$, $r^("center")$ and $r^("right")$ respectively denote the subjective values (ratings) of each option expressed by the decision-maker beforehand. $epsilon_t$ is Gaussian white noise with variance $sigma^2$.
+The parameter $v$ is the drift rate controlling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r_("left")$, $r_("center")$ and $r_("right")$ respectively denote the subjective values (ratings) of each option expressed by the decision-maker beforehand. $epsilon_t$ is Gaussian white noise with variance $sigma^2$.
 
 The model uses one #acr("DV") per alternative based on the evidence accumulated for that option compared with the highest accumulated evidence for the others (@eq:addm_dv_left, @eq:addm_dv_center, @eq:addm_dv_right).
 
 $
-  "DV"_t^("left") = sum_(k=1)^t e_k^("left") - "max"(sum_(k=1)^t e_k^("center"),sum_(k=1)^t e_k^("right"))
+  "DV"_(t|"left") eq.triple sum_(k=1)^t e_(k|"left") - "max"(sum_(k=1)^t e_(k|"center"),sum_(k=1)^t e_(k|"right"))
 $ <eq:addm_dv_left>
 
 $
-  "DV"_t^("center") = sum_(k=1)^t e_k^("center") - "max"(sum_(k=1)^t e_k^("left"),sum_(k=1)^t e_k^("right"))
+  "DV"_(t|"center") eq.triple sum_(k=1)^t e_(k|"center") - "max"(sum_(k=1)^t e_(k|"left"),sum_(k=1)^t e_(k|"right"))
 $ <eq:addm_dv_center>
 
 $
-  "DV"_t^("right") = sum_(k=1)^t e_k^("right") - "max"(sum_(k=1)^t e_k^("left"),sum_(k=1)^t e_k^("center"))
+  "DV"_(t|"right") eq.triple sum_(k=1)^t e_(k|"right") - "max"(sum_(k=1)^t e_(k|"left"),sum_(k=1)^t e_(k|"center"))
 $ <eq:addm_dv_right>
 
 The decision is made once one of these #acrpl("DV") crosses a threshold. This "best versus next" approach provides a more accurate description of the decision-maker's behavior than the alternative "best versus average", in which the evidence accumulated for each option is compared to the average accumulated evidence for the others.
@@ -357,7 +359,7 @@ The decision is made once one of these #acrpl("DV") crosses a threshold. This "b
   image("images/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
   caption: flex-caption(
     short: [Attentional Diffusion Decision Model: task and simulation],
-    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to make a decision. _(B)_ Simulation: Decision Variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the DVs hits the threshold, then that item is chosen (right item here). In this particular simulation, $r^("left") = 3$, $r^("center") = 5$ and $r^("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
+    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to make a decision. _(B)_ Simulation: Decision Variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the DVs hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
     ],
   ),
 ) <fig:addm>
@@ -366,15 +368,15 @@ A variation of the #acr("aDDM") extends it to purchasing decisions, taking into 
 
 ===== Advantage Linear Ballistic Accumulator
 
-The #acr("ALBA") is a model of sequential decision-making combining the mathematical framework of the #acr("LBA") model (@par:lba) with a value-difference encoding mechanism @vanravenzwaaijAccumulatingAdvantagesNew2020. In this model, each of the $N$ alternatives is associated with $N-1$ accumulators driven by the difference (“advantage”) in evidence versus another option. The drift rate $v^(i,j)$ for an accumulator tracking option $i$ over option $j$ is calculated using a sum of three terms (@eq:alba_drift).
+The #acr("ALBA") is a model of sequential decision-making combining the mathematical framework of the #acr("LBA") model (@par:lba) with a value-difference encoding mechanism @vanravenzwaaijAccumulatingAdvantagesNew2020. In this model, each of the $n$ alternatives is associated with $n-1$ accumulators driven by the difference (“advantage”) in evidence versus another option. The drift rate $v_(i,j)$ for an accumulator tracking option $i$ over option $j$ is calculated using a sum of three terms (@eq:alba_drift).
 
-$ v^(i,j) = w_D (S_i-S_j) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
+$ v_(i,j) = w_D (S_i-S_j) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
 
-The _advantage term_ $w_D (S_i-S_J)$ represents the difference between absolute evidence strengths $S_i$ and $S_J$, weighted by $w_D in RR^+$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options, weighted by $w_S in RR^+$. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z^(i,j)$ independently and uniformly sampled from the interval $[0,Z]$ (@eq:alba_dv).
+The _advantage term_ $w_D (S_i-S_J)$ represents the difference between absolute evidence strengths for their respectives options $S_i$ and $S_j$, weighted by $w_D in RR^+$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options, weighted by $w_S in RR^+$. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z_(i,j)$ independently and uniformly sampled from the $[0,Z]$ range (@eq:alba_dv).
 
-$ "DV"_t^(i,j) = v^(i,j) t + z^(i,j) $ <eq:alba_dv>
+$ "DV"_(t|i,j) = v_(i,j) t + z_(i,j) $ <eq:alba_dv>
 
-An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $"DV"^(n,j)$ favoring option $n$ over its rivals must reach their respective thresholds $a^(n,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
+An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $"DV"^(i,j)$ favoring option $i$ over its rivals must reach their respective thresholds $a_(i,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
 
 #figure(
   image("images/pesquetALBA.png", width: 90%),
