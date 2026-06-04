@@ -14,6 +14,7 @@
 #include "content/toc.typ"
 #include "content/glossary.typ"
 #include "content/acronyms.typ"
+#include "content/notation.typ"
 
 // ---------- MAIN ----------
 #show: main-matter

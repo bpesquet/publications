@@ -9,7 +9,6 @@
   "AUROC": "Area Under the ROC curve",
   "aDDM": "Attentional Diffusion Decision Model",
   "DDM": "Diffusion Decision Model a.k.a. Drift Diffusion Model",
-  "DV": "Decision Variable",
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
   "LBA": "Linear Ballistic Accumulator",
