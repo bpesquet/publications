@@ -5,7 +5,7 @@
 
 == The decision process
 
-Every day, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding whether to pursue a PhD..
+Every day, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding whether to pursue a PhD.
 
 Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neural perspectives.
 
@@ -33,7 +33,7 @@ Examples of experimental scenarios associated with such _perceptual_ decisions a
 
 ==== Value-based decisions
 
-Other decisions require choosing between alternatives based on personal preferences or expected rewards. In that case, there is not always an intrinsically correct choice (e.g. expressing a preference between several food items). At their core is the notion of _value_, the subjective worth or desirability of an outcome. These abstract representations are first assigned to the available options, then a choice is made by comparing values @padoa-schioppaOrbitofrontalCortexNeural2017.
+Other decisions require choosing between alternatives based on personal preferences or expected rewards. In that case, there is not always an intrinsically correct choice (e.g. expressing a preference between several food items). At their core is the notion of _value_, the subjective worth or desirability of an outcome. These abstract representations are first assigned to the available options, then a decision is made by comparing values, resulting in a choice @padoa-schioppaOrbitofrontalCortexNeural2017.
 
 Examples of experimental scenarios associated with such value-based decisions are #acr("MAB") or $k$-armed bandit problems, named by analogy to a casino slot machine with _k_ arms. Here, the decision-maker iteratively selects one of the multiple fixed options (e.g., arms or actions) in order to maximize a cumulative reward.
 
@@ -42,7 +42,7 @@ Examples of experimental scenarios associated with such value-based decisions ar
   caption: flex-caption(
     short: [Example of a two-armed bandit experimental task.],
     long: [
-      Example of a two-armed bandit experimental task. Each trial starts with a fixation cross, followed by the presentation of the stimulus until a choice is made or allowed decision time is elapsed. The chosen option is briefly highlighted, then feedback based on probabilistic rewards is given to the subject. Adapted from @mileticNewModelDecision2021.
+      Example of a two-armed bandit experimental task. Each trial starts with a fixation cross, followed by the presentation of the stimulus until a choice is expressed or allowed decision time is elapsed. The chosen option is briefly highlighted, then feedback based on probabilistic rewards is given to the subject. Adapted from @mileticNewModelDecision2021.
     ],
   ),
 ) <fig:mab>
@@ -114,11 +114,11 @@ The following sections review several prominent models of binary decision-making
   ),
 ) <tab:sdt_outcomes>
 
-#acr("SDT") assumes that the evidence obtained at each trial, denoted $e$, can be modeled as a single scalar value drawn from one of two probability distributions: a _noise distribution_ when the signal is absent and a _signal-plus-noise distribution_, or _signal distribution_, when it is present. These two distributions respectively describe the values that $e$ can attain in the absence/presence of signal. In the general case, the two distributions will overlap, reflecting the task difficulty. In the standard equal-variance Gaussian version of #acr("SDT"), both distributions are assumed to be normal with equal variance, differing only in their respective means $mu_"noise"$ and $mu_"signal"$. To make a choice, the decision-maker sets a criterion $lambda$ along the evidence axis, and compares the value of $e$ (used as the decision variable) to it. If $e>lambda$, the decision-maker responds "signal present"; otherwise, it responds "signal absent" (@fig:sdt_dist).
+#acr("SDT") assumes that the evidence obtained at each trial, denoted $e$, can be modeled as a single scalar value drawn from one of two probability distributions: a _noise distribution_ when the signal is absent and a _signal-plus-noise distribution_, or _signal distribution_, when it is present. These two distributions respectively describe the values that $e$ can attain in the absence/presence of signal. In the general case, the two distributions will overlap, reflecting the task difficulty. In the standard equal-variance Gaussian version of #acr("SDT"), both distributions are assumed to be normal with equal variance, differing only in their respective means $mu_"noise"$ and $mu_"signal"$. The decision-maker sets a criterion $lambda$ along the evidence axis, and compares the value of $e$ (used as the decision variable) to it. If $e>lambda$, the decision-maker responds "signal present"; otherwise, it responds "signal absent" (@fig:sdt_dist).
 
-Since the two distributions can be interpreted as likelihood functions for the evidence, an equivalent formulation of #acr("SDT") uses the likelihood ratio, denoted $X$, as the decision variable. The numerator is the likelihood of obtaining a particular value of $e$ on a signal trial, and the denominator is the likelihood of obtaining the same value of $e$ on a noise trial (@eq:sdt_lr). The criterion $beta$ to which this decision variable is compared is the likelihood ratio for the value of $e$ corresponding to the evidence criterion $lambda$ (@eq:sqt_beta).
+Since the two distributions can be interpreted as likelihood functions of the evidence $e$, an equivalent formulation of #acr("SDT") uses the likelihood ratio, denoted $L(e)$, as the decision variable. The numerator is the likelihood of obtaining a particular value of $e$ on a signal trial, and the denominator is the likelihood of obtaining the same value of $e$ on a noise trial (@eq:sdt_lr). The criterion $beta$ to which this decision variable is compared is the likelihood ratio $beta$ for the value of $e$ corresponding to the evidence criterion $lambda$ (@eq:sqt_beta).
 
-$ X = P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
+$ L(e) = P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
 
 $ beta = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
 
@@ -180,7 +180,7 @@ Another possible measure of sensitivity uses the #acr("ROC") curve, which plots 
   image("images/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
   caption: flex-caption(
     short: [The sequential sampling model family],
-    long: [The sequential sampling model family. Accumulator models, also known as _race models_, have several decision variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each DV). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the DVs are inversely correlated, a race model is equivalent to a random walk. In discrete-time models, evidence increments are summed over time, whereas in continuous-time models accumulation is represented by stochastic differential equations. Adapted from @ratcliffDiffusionDecisionModel2016.
+    long: [The sequential sampling model family. Accumulator models, also known as _race models_, have several decision variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each decision variable). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the decision variables are inversely correlated, a race model is equivalent to a random walk. In discrete-time models, evidence increments are summed over time, whereas in continuous-time models accumulation is represented by stochastic differential equations. Adapted from @ratcliffDiffusionDecisionModel2016.
     ],
   ),
 ) <fig:eam_family>
@@ -189,17 +189,19 @@ Another possible measure of sensitivity uses the #acr("ROC") curve, which plots 
   image("images/pesquetDDMRace.png", width: 75%),
   caption: flex-caption(
     short: [Illustration of the difference between single- and multi-accumulator models],
-    long: [Illustration of the difference between single- and multi-accumulator models of sequential decision-making. _(a)_ A single accumulator model has only one decision variable encoding both options. _(b)_ A multi-accumulator model uses several DVs (typically one per alternative) that run in parallel until one of them crosses the decision threshold, hence the name _race model_.
+    long: [Illustration of the difference between single- and multi-accumulator models of sequential decision-making. _(a)_ A single accumulator model has only one decision variable encoding both options. _(b)_ A multi-accumulator model uses several decision variables (typically one per alternative) that run in parallel until one of them crosses the decision threshold, hence the name _race model_.
     ],
   ),
 ) <fig:eam_comparison>
 
 ===== Sequential Probability Ratio Test
 
-A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single decision variable, denoted $X(t)$, based on the likelihood ratio of the two alternatives $h_1$ and $h_2$ at time $t$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until one of the decision boundaries is crossed. Thus, it can be envisioned as applying #acr("SDT") repeatedly to a stream of evidence $e(t), t in [1,tau]$ (@eq:sprt).
+A well-known form of sequential sampling for binary decisions is the #acr("SPRT"). Like #acr("SDT"), #acr("SPRT") uses a single decision variable, denoted $X(t)$, based on the likelihood ratio of the two alternatives $h_1$ and $h_2$ at time $t$. But rather than deciding based on a single piece of evidence, #acr("SPRT") keeps accumulating until one of the decision boundaries is crossed. Thus, it can be envisioned as applying #acr("SDT") repeatedly to a stream of momentary evidence $e(1), e(2), ..., e(t)$ received over time (@eq:sprt_l, @eq:sprt).
+
+$ L(e(t)) = P(e(t)|h_1)/P(e(t)|h_2) $ <eq:sprt_l>
 
 $
-  X(tau) = log_e P(e(1), e(2), ..., e(tau)|h_1)/P(e(1), e(2), ..., e(tau)|h_2) = sum_(t=1)^tau log_e P(e(t)|h_1)/P(e(t)|h_2) = sum_(t=1)^tau w(t)
+  X(t) = log_e P(e(1), e(2), ..., e(t)|h_1)/P(e(1), e(2), ..., e(t)|h_2) = sum_(k=1)^t log_e L(e(k)) = sum_(k=1)^t w(k)
 $ <eq:sprt>
 
 This running sum is compared to two fixed boundaries $A$ (upper) and $B$ (lower) with $B < 0 < A$. The process terminates and a decision is made the first time the cumulative log-likelihood ratio exits the interval $[B, A]$. With a desired false alarm rate $p_("fa")$ (probability of choosing $h_1$ when $h_2$ is true) and a miss rate $p_("miss")$ (probability of choosing $h_2$ when $h_1$ is true), the boundaries $A$ and $B$ can be derived as follows (@eq:sprt_A, @eq:sprt_B).
@@ -210,20 +212,20 @@ $ B = log_e p_("miss")/(1-p_("fa")) $  <eq:sprt_B>
 
 For example, with $p_("fa")=0.05$ and $p_("miss") = 0.1$, $A = log_e (1-0.1) / 0.05 = log_e 18 approx 2.89$. The process must accumulate a log-likelihood ratio of at least $2.89$ before deciding in favor of the $h_1$ alternative, which means the likelihood ratio must be greater or equal than $18$. Stricter error tolerance (smaller $p_("fa")$) pushes $A$ higher, demanding more evidence before committing.
 
-A core strength of #acr("SPRT") is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e(t)$ is converted to a weight of evidence $w(t)$ defined by @eq:sprt_coin.
+A core strength of #acr("SPRT") over other binary hypothesis testing methods is that it achieves the fastest mean decision time for a given error rate @waldOptimumCharacterSequential1948, @bogaczOptimalDecisionmakingTheories2007. As an example (adapted from @goldNeuralBasisDecision2007), consider two coins placed in a bag: one is fair (50/50 chance of obtaining heads or tails when tossing it), the other is biased towards heads (60/40). One of the coins is drawn from the bag: is it the biased ($h_("heads")$) or the fair ($h_("fair")$) one? And how many tosses are needed for this decision? To answer these questions, each toss result $e(k)$ is converted to a weight of evidence $w(k)$ defined by @eq:sprt_coin.
 
 $
-  forall t in [1,tau], w(t) = cases(
+  w(k) = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
 $ <eq:sprt_coin>
 
-With the previously defined error rates, the minimum number of tosses needed to decide that the coin is the biased one with a false positive rate lower than 5% would be $2.89/0.182 approx 16$.
+At least $2.89/0.182 approx 16$ consecutive "heads" results would be needed to decide that the coin is the biased one with a false positive rate lower than 5%.
 
 ===== Diffusion Decision Model <par:ddm>
 
-Another prominent model of the decision process id the #acr("DDM") @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise. The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a decision variable, beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
+Another prominent model of the decision process is the #acr("DDM") @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise. The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a decision variable, beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
 
 #figure(
   image("images/forstmannSequentialSamplingModels2016_1.png", width: 90%),
@@ -242,11 +244,9 @@ The core parameters of the #acr("DDM") are:
 - $sigma$, the noise magnitude, governs the importance of internal noise in the decision process.
 - $T_("er")$, the non-decision time (@par:decision_time_course), measures the time needed for peripheral processes such as stimulus encoding and motor response.
 
-Evidence accumulation in the #acr("DDM") is modeled as a noisy stochastic process. For each time $t$, the decision variable corresponds to a scalar-valued random variable $X(t)$ whose evolution is governed by the stochastic differential equation of arithmetic Brownian motion (@eq:ddm). For a defined noise trajectory $omega$, each realization $x(t)$ of $X(t)$ produces a scalar-valued path over time (@eq:ddm_x).
+Evidence accumulation in the #acr("DDM") is modeled as a noisy stochastic process. For each time $t$, the decision variable corresponds to a scalar-valued random variable $X(t)$ whose evolution is governed by the stochastic differential equation of arithmetic Brownian motion (@eq:ddm).
 
 $ "d"X(t) = v"d"t + sigma"d"W(t) $ <eq:ddm>
-
-$ x(t) = X(t, omega) "where" omega in Omega $ <eq:ddm_x>
 
 The _drift term_ $v"d"t$ is the deterministic component, with $"d"t$ an infinitesimal time step. The _diffusion term_ $sigma"d"W(t)$ is the stochastic component, with $"d"W(t) tilde cal(N)(0, "d"t)$ a infinitesimal increment of a Wiener process (Gaussian white noise). This term captures intra-trial variability in evidence sampling. Evidence is not accumulated deterministically, but drifts on average in one direction while fluctuating randomly. An analogy is that of a particle doing a random walk between two walls. The drift term is the constant wind pushing the particle in one direction. The diffusion term is the turbulence deviating it randomly.
 
@@ -283,24 +283,24 @@ The following sections review several models of multi-alternative decision makin
 The #acr("MSPRT") is, at its name implies, a generalization of #acr("SPRT") to multiple alternatives @dragalinMultihypothesisSequentialProbability, @dragalinMultihypothesisSequentialProbabilitya. Its most direct formulation uses pairwise log-likelihood ratios as decision variables. For a set of $n$ competing hypotheses $h_i, i in [1,n]$, each of the $n(n-1)$ decision variables $X_(i,j) (t)$ measures how much more the evidence supports $h_i$ over hypothesis $h_j$ (@eq:msprt).
 
 $
-  X_(i,j) (tau) = sum_(t=1)^tau log_e P(e(t)|h_i)/P(e(t)|h_j) = sum_(t=1)^tau w_(i,j) (t) "where" (i,j) in [1,n]^2 "and" i != j
+  X_(i,j) (t) = sum_(k=1)^t log_e P(e(k)|h_i)/P(e(k)|h_j) = sum_(k=1)^t w_(i,j) (k) "where" (i,j) in [1,n]^2 "and" i != j
 $ <eq:msprt>
 
 Evidence is sampled until one hypothesis dominates all others. A common stopping rule for accepting $h_i$ uses a set of predefined tolerances $epsilon_(i,j)$ to define the pairwise thresholds (@eq:msprt_stop).
 
-$ forall j != i, sum_(t=1)^t log_e P(e(t)|h_i)/P(e(t)|h_j) >= log_e 1/epsilon_(i,j) $ <eq:msprt_stop>
+$ forall j != i, sum_(k=1)^t log_e P(e(k)|h_i)/P(e(k)|h_j) >= log_e 1/epsilon_(i,j) $ <eq:msprt_stop>
 
-For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e(t)$ is converted to two separate weights of evidence $w_("heads","fair") (t)$ and $w_("heads","tails") (t)$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
+For example, #acr("MSPRT") could be used to classify a coin as one of three possible types: fair (50/50), biased towards heads (60/40), biased towards tails (30/70). Observations would be the coin flips, and the test stops as soon as the evidence is strong enough to declare one hypothesis true. In this setup, $3(3-1) = 6$ pairwise log-likelihood ratios are tracked. For the $h_("heads")$ hypothesis, each toss result $e(k)$ is converted to two separate weights of evidence $w_("heads","fair") (k)$ and $w_("heads","tails") (k)$ accumulated to their respective log-likelihood ratios (@eq:msprt_heads_fair, @eq:msprt_heads_tails).
 
 $
-  forall t in [1,tau], w_("heads","fair") (t) = cases(
+  w_("heads","fair") (k) = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("fair")) = log_e 0.6/0.5 approx 0.182 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("fair")) = log_e 0.4/0.5 approx -0.223 "if" text("toss gives \"tails\""),
   )
 $ <eq:msprt_heads_fair>
 
 $
-  forall t in [1,tau], w_("heads","tails") (t) = cases(
+  w_("heads","tails") (k) = cases(
     log_e P(e="heads"|h_("heads"))/P(e="heads"|h_("tails")) = log_e 0.6/0.3 approx 0.693 "if" text("toss gives \"heads\""),
     log_e P(e="tails"|h_("heads"))/P(e="tails"|h_("tails")) = log_e 0.4/0.7 approx -0.56 "if" text("toss gives \"tails\""),
   )
@@ -325,48 +325,48 @@ $ T_i = (a-z_i)/v_i "where" v_i > 0 $ <eq:lba_t>
   ),
 ) <fig:lba>
 
-Despite its simplicity, the #acr("LBA") model successfully accommodates empirical phenomena from binary and multiple choice tasks while being analytically tractable and computationally efficient.
+Despite its simplicity, the #acr("LBA") model successfully accommodates empirical phenomena from binary and multiple decision tasks while being analytically tractable and computationally efficient.
 
-===== Attentional Diffusion Decision Model
+===== Attention-based Diffusion Decision Model
 
 The independence of accumulators at the core of the #acr("LBA")'s architecture is a mathematical convenience that may not reflect the biological reality of competitive decision circuits, empirically characterized by mutual inhibition mechanisms @wangProbabilisticDecisionMaking2002. This model therefore sacrifices neural plausibility for tractability. Other models of sequential decision-making relax this independence assumption and introduce relationships between accumulators during the decision process.
 
-The #acr("aDDM") is a generalization of the #acr("DDM") to multi-alternative value-based decisions. It is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker @krajbichMultialternativeDriftdiffusionModel2011. Let us consider a decision between three available items as an example. When the decision-maker is looking at the item on the left, the respective evidence for the three options at time $t$ are given by @eq:addm_e_left, @eq:addm_e_center and @eq:addm_e_right.
+The #acr("DDM"), for instance, has been generalized to multi-alternative value-based decisions @krajbichMultialternativeDriftdiffusionModel2011. This variant is guided by _visual attention_: evidence in favor of each alternative is accumulated at different rates depending on the item’s value and whether it is being fixated on by the decision-maker. Evidence for each alternative is accumulated in variables $A_i (t)$ similarly to #acr("DDM") (@eq:addm_evidence). The drift rate $v_i$ depends on whether the item is fixated or not (@eq:addm_v_fixated, @eq:addm_v_nonfixated).
 
-$ e_("left") (t) = v r_("left") + epsilon_("left") (t) $ <eq:addm_e_left>
+$ "d"A_i (t) = v_i"d"t + sigma"d"W_i (t) $ <eq:addm_evidence>
 
-$ e_("center") (t) = theta v r_("center") + epsilon_("center") (t) $ <eq:addm_e_center>
+$ v_(i|"fixated") = d r_i $ <eq:addm_v_fixated>
 
-$ e_("right") (t) = theta v r_("right") + epsilon_("right") (t) $ <eq:addm_e_right>
+$ v_(i|"non-fixated") = d theta r_i $ <eq:addm_v_nonfixated>
 
-The parameter $v$ is the drift rate controlling the speed of evidence integration (@par:ddm). $theta in [0,1]$ reflects the bias against the unfixated alternatives. $r_("left")$, $r_("center")$ and $r_("right")$ respectively denote the subjective values (ratings) of each option expressed by the decision-maker beforehand. $epsilon (t)$ is Gaussian white noise with variance $sigma^2$.
+The parameter $d$ is a constant controlling the speed of integration. $theta in [0,1]$ reflects the bias against the unfixated alternatives. The parameters $r_i$ denote the subjective values (ratings) of each option, as expressed by the decision-maker beforehand. The model uses one decision variable $X_i (t)$ per alternative, based on the evidence accumulated for that option compared with the highest accumulated evidence for the others (@eq:addm_evidence, @eq:addm_dv).
 
-The model uses one decision variable per alternative based on the evidence accumulated for that option compared with the highest accumulated evidence for the others (@eq:addm_dv_left, @eq:addm_dv_center, @eq:addm_dv_right).
-
-$
-  x_("left") (t) = sum_(t=1)^t e_("left") (k) - "max"(sum_(t=1)^t e_("center") (k), sum_(t=1)^t e_("right") (k))
-$ <eq:addm_dv_left>
-
-$
-  x_("center") (t) = sum_(t=1)^t e_("center") (k) - "max"(sum_(t=1)^t e_("left") (k),sum_(t=1)^t e_("right") (k))
-$ <eq:addm_dv_center>
-
-$
-  x_("right") (t) = sum_(t=1)^t e_("right") (k) - "max"(sum_(t=1)^t e_("left") (k),sum_(t=1)^t e_("center") (k))
-$ <eq:addm_dv_right>
+$ X_i (t) = A_i (t) - max_(j != i) A_j (t) $ <eq:addm_dv>
 
 The decision is made once one of these decision variables crosses a threshold. This "best versus next" approach provides a more accurate description of the decision-maker's behavior than the alternative "best versus average", in which the evidence accumulated for each option is compared to the average accumulated evidence for the others.
 
 #figure(
   image("images/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
   caption: flex-caption(
-    short: [Attentional Diffusion Decision Model: task and simulation],
-    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to make a decision. _(B)_ Simulation: decision variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the DVs hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
+    short: [Attention-based Diffusion Decision Model: task and simulation],
+    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to express a choice. _(B)_ Simulation: decision variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the accumulators hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
     ],
   ),
 ) <fig:addm>
 
-A variation of the #acr("aDDM") extends it to purchasing decisions, taking into account the prices for the different alternatives displayed to the decision-maker during the decision process @krajbichAttentionalDriftDiffusionModel2012.
+Another variant of the #acr("DDM"), named #acr("aDDM"), extends it to purchasing decisions, taking into account the prices for the different alternatives displayed to the decision-maker during the decision process @krajbichAttentionalDriftDiffusionModel2012.
+
+===== Leaky Competing Accumulator
+
+The #acr("LCA") is a biologically grounded model of sequential decision-making that incorporates leakage (or decay), lateral inhibition and noise into the accumulation process @usherTimeCoursePerceptual2001. Each alternative is associated with an accumulator whose value changes continuously. All accumulators correspond to random variables $X_i (t) "with" X_i (0) = 0$. The dynamics of evidence accumulation are expressed as coupled stochastic differential equations (@eq:lca).
+
+$ "d"X_i (t) = ([S_i - k X_i (t) - beta sum_(j != i) X_j (t)]^+)"d"t + sigma "d"W_i (t) $ <eq:lca>
+
+$S_i$ represents the mean evidence strength for option $i$, assumed to be positive and fixed for the duration of a trial. $k$ is the _leakage_ or _decay_ parameter, governing passive loss of accumulation over time. $beta$ controls _lateral inhibition_: how strongly each accumulator suppresses its competitors, The rectification operator $[dot]^+ = max(0, dot)$ ensures that the lateral inhibition term $- beta sum_(j != i) X_j (t)$ cannot overwhelm $S_i$ and make the net drift strongly negative. After each update, accumulator variables are floored at zero (@eq:lca_floor). This prevents evidence accumulation from becoming negative, which would contradict the biological motivation of this model.
+
+$ X_i (t) arrow.l [X_i (t)]^+ $ <eq:lca_floor>
+
+In this model, the interplay between $k$ and $beta$ is critical. When $k>beta$, leakage dominates, creating a _recency effect_: early evidence decays away and recent evidence has more influence on the decision outcome. When $k < beta$, inhibition dominates, leading to winner-takes-all dynamics and a _primary effect_: early evidence creates a hard-to-reverse advantage for one of the accumulators. When $k=beta$ (balanced regime), the #acr("LCA") behaves similarly to diffusion-type models @bogaczExtendingBiologicallyInspired2007.
 
 ===== Advantage Linear Ballistic Accumulator
 
@@ -374,28 +374,20 @@ The #acr("ALBA") is a model of sequential decision-making combining the mathemat
 
 $ v_(i,j) = w_D (S_i-S_j) + w_S (S_i+S_j) + v_0 $ <eq:alba_drift>
 
-The _advantage term_ $w_D (S_i-S_j)$ represents the difference between absolute evidence strengths for their respectives options $S_i$ and $S_j$, weighted by $w_D in RR^+$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options, weighted by $w_S in RR^+$. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z_(i,j)$ independently and uniformly sampled from the $[0,Z]$ range (@eq:alba_dv).
+The _advantage term_ $w_D (S_i-S_j)$ represents the difference between absolute evidence strengths for their respective options $S_i$ and $S_j$, weighted by $w_D in RR^+$. The _sum term_ $w_S (S_i+S_j)$ represents the total absolute evidence of both options, weighted by $w_S in RR^+$. Empirically, the advantage term strongly dominates the model's behavior (e.g. $w_D >> w_S$). Lastly, $v_0$ is a scaling parameter. These drift rates are used to drive evidence accumulation linearly, with starting points $z_(i,j)$ independently and uniformly sampled from the $[0,Z]$ range (@eq:alba_dv).
 
 $ X_(i,j) (t) = v_(i,j) t + z_(i,j) $ <eq:alba_dv>
 
-An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $"DV"^(i,j)$ favoring option $i$ over its rivals must reach their respective thresholds $a_(i,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
+An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $X_(i,j) (t)$ favoring option $i$ over its rivals must reach their respective thresholds $a_(i,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
 
 #figure(
   image("images/pesquetALBA.png", width: 90%),
   caption: flex-caption(
     short: [Advantage Linear Ballistic Accumulator],
-    long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulators cross their thresholds $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators and option $A$ is selected after 1000 timesteps.
+    long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulators cross their thresholds $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators, and option $A$ is selected after 1000 timesteps.
     ],
   ),
 ) <fig:alba>
-
-===== Leaky Competing Accumulator
-
-The #acr("LCA") is a biologically grounded model of sequential decision-making that incorporates leakage (or decay), lateral inhibition and noise into the accumulation process @usherTimeCoursePerceptual2001. Each alternative is associated with an accumulator whose value changes continuously. For each time $t$, decision variables correspond to random variables $X_i (t)$. The dynamics of evidence accumulation are expressed as coupled stochastic differential equations (@eq:lca).
-
-$ "d"X_i (t) = (S_i - k X_i (t) - beta sum_(j != i) X_j (t))"d"t + sigma "d"W_i (t) $ <eq:lca>
-
-$k$ is the _leakage_ parameter. $beta$ controls _lateral inhibition_.
 
 ===== Attractor models
 

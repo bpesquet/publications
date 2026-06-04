@@ -6,11 +6,9 @@ Capital letters are used for random variables, whereas lowercase letters are use
 
 / $n$: Number of alternatives.
 
-/ $e_i (t)$: Evidence for alternative $i in [1,n]$ at time $t$.
+/ $e (t)$: Momentary evidence at time $t$.
 
-/ $X_i (t)$: Stochastic accumulator state for alternative $i$ at time $t$.
-
-/ $x_i (t)$: Accumulated evidence for alternative $i$ at time $t$, realization of $X_i (t)$.
+/ $X_i (t)$: Stochastic accumulator state for alternative $i in [1,n]$ at time $t$.
 
 / $v_i$: Drift rate (speed of evidence accumulation) for alternative $i$.
 
