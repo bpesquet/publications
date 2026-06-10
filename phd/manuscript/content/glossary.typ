@@ -8,6 +8,8 @@
 
 / Decision: A deliberative process resulting in the commitment to one alternative over others.
 
+/ Decision-making: The process by which sensory information, internal states, and learned experiences are integrated to generate behavioral choices.
+
 / Sensitivity: Ability of a decision-maker to distinguish signal (useful information) from noise.
 
 / Uncertainty: Variability in the representation of information during a decision.

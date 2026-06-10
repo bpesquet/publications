@@ -1,4 +1,4 @@
-== Learning and decision-making
+== Learning
 
 === Conceptual overview
 

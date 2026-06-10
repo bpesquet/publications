@@ -7,7 +7,7 @@
 
 Every day, humans and non-humans make hundreds of decisions, each of them leading to a choice between several possible alternatives (options). Some of these decisions are trivial: for example, choosing which socks to wear when dressing up. Others imply much higher stakes: for example, deciding whether to pursue a PhD.
 
-Decision-making is one of the main aspects of cognition. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neural perspectives.
+Decision-making is one of the main aspects of cognition. It can be broadly defined as the process by which sensory information, internal states, and learned experiences are integrated to generate behavioral choices. Its study spans such varied scientific fields as psychology, neuroscience, economics, statistics and political science. Despite the immense variety of contexts and applications, most decisions share common elements including deliberation and commitment @goldNeuralBasisDecision2007. In the following chapters, we study decision-making from the conceptual, computational and neural perspectives.
 
 === Conceptual overview
 
@@ -17,9 +17,9 @@ The following subsections introduce several key dimensions of decisions.
 
 ==== Perceptual decisions
 
-Some decisions only involve the processing of sensory stimuli (visual, auditory, olfactory, tactile or gustative signals), without needing any abstract representation on top of them.
+Perceptual decisions involve selecting among alternatives based on sensory stimuli (visual, auditory, olfactory, tactile or gustative signals), without needing any abstract representation on top of them.
 
-Examples of experimental scenarios associated with such _perceptual_ decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., "sound present" vs. "sound absent").
+Examples of experimental scenarios associated with such decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., "sound present" vs. "sound absent").
 
 #figure(
   image("images/pesquetRDM.png", width: 75%),
@@ -33,7 +33,7 @@ Examples of experimental scenarios associated with such _perceptual_ decisions a
 
 ==== Value-based decisions
 
-Other decisions require choosing between alternatives based on personal preferences or expected rewards. In that case, there is not always an intrinsically correct choice (e.g. expressing a preference between several food items). At their core is the notion of _value_, the subjective worth or desirability of an outcome. These abstract representations are first assigned to the available options, then a decision is made by comparing values, resulting in a choice @padoa-schioppaOrbitofrontalCortexNeural2017.
+Other decisions require choosing between alternatives based on personal preferences or expected rewards. In that case, there is not always an intrinsically correct choice (e.g. expressing a personal preference between several food items). At their core is the notion of _value_, the subjective worth or desirability of an outcome. These abstract representations are first assigned to the available options, then a decision is made by comparing values, resulting in a choice @padoa-schioppaOrbitofrontalCortexNeural2017.
 
 Examples of experimental scenarios associated with such value-based decisions are #acr("MAB") or $k$-armed bandit problems, named by analogy to a casino slot machine with _k_ arms. Here, the decision-maker iteratively selects one of the multiple fixed options (e.g., arms or actions) in order to maximize a cumulative reward.
 
@@ -120,7 +120,7 @@ Since the two distributions can be interpreted as likelihood functions of the ev
 
 $ L(e) = P(e|"signal")/P(e|"noise") $ <eq:sdt_lr>
 
-$ beta = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
+$ beta = L(e=lambda) = P(e=lambda|"signal") / P(e=lambda|"noise") $ <eq:sqt_beta>
 
 The probability of responding "present" on signal trials is called the _hit rate_ or #acr("TPR"). It corresponds to the proportion of the signal distribution that exceeds the evidence criterion $lambda$. The hit rate can be calculated (@eq:sdt_tpr) using the cumulative distribution function $Phi$, which computes the probability that a value fails below a given _z-score_ (@eq:sdt_phi). Geometrically, the $Phi$ function determines the portion of the distribution that lies to the left of the z-score. Given a raw value $x$, the z-score or standard score $z$ measures how many standard deviations $x$ is from the mean of the distribution (@eq:sdt_z). Similarly, the probability of responding "present" on noise trials is called the _false alarm rate_ or #acr("FPR"). It corresponds to the proportion of the noise distribution that exceeds the criterion $lambda$ (@eq:sdt_fpr). Both #acr("TPR") and #acr("FPR") are areas under their respective normal curves.
 
@@ -349,7 +349,7 @@ The decision is made once one of these decision variables crosses a threshold. T
   image("images/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
   caption: flex-caption(
     short: [Attention-based Diffusion Decision Model: task and simulation],
-    long: [Attentional Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to express a choice. _(B)_ Simulation: decision variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the accumulators hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
+    long: [Attention-based Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to express a choice. _(B)_ Simulation: decision variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the accumulators hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
     ],
   ),
 ) <fig:addm>
