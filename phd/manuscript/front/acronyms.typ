@@ -9,12 +9,16 @@
   "AUROC": "Area Under the ROC curve",
   "aDDM": "Attentional Diffusion Decision Model",
   "DDM": "Diffusion Decision Model a.k.a. Drift Diffusion Model",
+  "dlPFC": "dorsolateral prefrontal cortex",
+  "dmPFC": "dorsomedial prefrontal cortex",
   "EAM": "Evidence Accumulation Model",
   "FPR": "False Positive Rate",
   "LBA": "Linear Ballistic Accumulator",
   "LCA": "Leaky Competing Accumulator",
   "MAB": "Multi-Armed Bandit",
   "MSPRT": "Multihypothesis Sequential Probability Ratio Test",
+  "OFC": "orbitofrontal cortex",
+  "PFC": "prefrontal cortex",
   "RDM": "Random Dot Motion",
   "ROC": "Receiver Operating Characteristic",
   "RT": "Reaction Time",
@@ -23,6 +27,8 @@
   "SPRT": "Sequential Probability Ratio Test",
   "SSM": "Sequential Sampling Model",
   "TPR": "True Positive Rate",
+  "vlPFC": "ventrolateral prefrontal cortex",
+  "vmPFC": "ventromedial prefrontal cortex",
 ))
 
 // Acronyms

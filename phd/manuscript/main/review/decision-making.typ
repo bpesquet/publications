@@ -1,5 +1,5 @@
 #import "../../utils.typ"
-#import utils.acrostiche: acr, acrfull, acrpl, reset-acronym
+#import utils.acrostiche: acr, acrpl
 #import utils.nth: nth
 #import utils: flex-caption
 
@@ -22,7 +22,7 @@ Perceptual decisions involve selecting among alternatives based on sensory stimu
 Examples of experimental scenarios associated with such decisions are Stroop tasks (naming the ink color of a colored word with a mismatch between ink color and word), #acr("RDM") tasks (assessing the main motion of a dot cloud, @fig:rdm) or faint sound detection. For this family of decisions, the possible alternatives (options) are typically well-defined and mutually exclusive (e.g., "sound present" vs. "sound absent").
 
 #figure(
-  image("images/pesquetRDM.png", width: 75%),
+  image("images/decision/pesquetRDM.png", width: 75%),
   caption: flex-caption(
     short: [Examples of Random Dot Motion tasks with various movement coherence.],
     long: [
@@ -38,7 +38,7 @@ Other decisions require choosing between alternatives based on personal preferen
 Examples of experimental scenarios associated with such value-based decisions are #acr("MAB") or $k$-armed bandit problems, named by analogy to a casino slot machine with _k_ arms. Here, the decision-maker iteratively selects one of the multiple fixed options (e.g., arms or actions) in order to maximize a cumulative reward.
 
 #figure(
-  image("images/mileticNewModelDecision2021_1.png", width: 50%),
+  image("images/decision/mileticNewModelDecision2021_1.png", width: 50%),
   caption: flex-caption(
     short: [Example of a two-armed bandit experimental task.],
     long: [
@@ -56,7 +56,7 @@ More formally, a decision can be envisioned as the mapping from a stimulus to a 
 $ "RT" = T_e + T_d + T_r = T_"er" + T_d $ <eq:rt>
 
 #figure(
-  image("images/myersPracticalIntroductionUsing2022_1.png", width: 75%),
+  image("images/decision/myersPracticalIntroductionUsing2022_1.png", width: 75%),
   caption: flex-caption(
     short: [Decomposition of the Reaction Time associated with a decision.],
     long: [
@@ -151,7 +151,7 @@ $
 $ <eq:sdt_c>
 
 #figure(
-  image("images/stanislawCalculationSignalDetection1999_1.png", width: 80%),
+  image("images/decision/stanislawCalculationSignalDetection1999_1.png", width: 80%),
   caption: flex-caption(
     short: [Signal Detection Theory: hypothetical probability density functions for the noise and signal distributions],
     long: [
@@ -163,7 +163,7 @@ $ <eq:sdt_c>
 Another possible measure of sensitivity uses the #acr("ROC") curve, which plots the True Positive Rate as a function of the False Positive Rate for all possible values of the criterion $lambda$. Computing the #acr("AUROC") is a non-parametric way to assess sensitivity independently of bias that is free from the equal-variance Gaussian assumptions needed for $d′$ to be bias-free.
 
 #figure(
-  image("images/michelConfidenceConsciousnessResearch2023_1.png", width: 70%),
+  image("images/decision/michelConfidenceConsciousnessResearch2023_1.png", width: 70%),
   caption: flex-caption(
     short: [Signal Detection Theory: ROC curves for different sensitivities],
     long: [
@@ -177,7 +177,7 @@ Another possible measure of sensitivity uses the #acr("ROC") curve, which plots 
 #acr("SDT") does not handle the dimension of decision time. Another class of decision-making models assumes that the decision variable is constructed from multiple pieces of evidence integrated over time. The process stops when a threshold is reached, which triggers the decision. This approach, called _sequential sampling_ or _sequential analysis_, allows studying the relationship between accuracy and the time needed to take a decision (@par:sat). Different approaches to sequential sampling coexist. Models differ according to the number of decision variables, and whether these are independent, correlated or subject to non-linear operations like decay or mutual inhibition. Models belonging to this family are called #acrpl("SSM") or #acrpl("EAM") (@fig:eam_family, @fig:eam_comparison).
 
 #figure(
-  image("images/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
+  image("images/decision/ratcliffDiffusionDecisionModel2016_1.png", width: 100%),
   caption: flex-caption(
     short: [The sequential sampling model family],
     long: [The sequential sampling model family. Accumulator models, also known as _race models_, have several decision variables (typically one per possible alternative) and an absolute evidence response rule (one threshold for each decision variable). Random walk/diffusion models use a relative evidence rule: a decision is made as soon as the difference in integrated evidence reaches a predefined threshold. When there are two alternatives and the decision variables are inversely correlated, a race model is equivalent to a random walk. In discrete-time models, evidence increments are summed over time, whereas in continuous-time models accumulation is represented by stochastic differential equations. Adapted from @ratcliffDiffusionDecisionModel2016.
@@ -186,7 +186,7 @@ Another possible measure of sensitivity uses the #acr("ROC") curve, which plots 
 ) <fig:eam_family>
 
 #figure(
-  image("images/pesquetDDMRace.png", width: 75%),
+  image("images/decision/pesquetDDMRace.png", width: 75%),
   caption: flex-caption(
     short: [Illustration of the difference between single- and multi-accumulator models],
     long: [Illustration of the difference between single- and multi-accumulator models of sequential decision-making. _(a)_ A single accumulator model has only one decision variable encoding both options. _(b)_ A multi-accumulator model uses several decision variables (typically one per alternative) that run in parallel until one of them crosses the decision threshold, hence the name _race model_.
@@ -228,7 +228,7 @@ At least $2.89/0.182 approx 16$ consecutive "heads" results would be needed to d
 Another prominent model of the decision process is the #acr("DDM") @ratcliffDiffusionDecisionModel2008. This model is the continuous-time limit of #acr("SPRT") under Gaussian noise. The #acr("DDM") assumes that a binary decision is based on the accumulation of noisy evidence in a decision variable, beginning at a starting point and terminating at one of the two decision thresholds that are associated with each of the alternatives (@fig:ddm_dots).
 
 #figure(
-  image("images/forstmannSequentialSamplingModels2016_1.png", width: 90%),
+  image("images/decision/forstmannSequentialSamplingModels2016_1.png", width: 90%),
   caption: flex-caption(
     short: [Diffusion Decision Model: schematic representation on a perceptual discrimination task],
     long: [Diffusion Decision Model: schematic representation on a perceptual discrimination task (Random Dot Motion). Evidence is accumulated over time until the threshold associated with one of the responses ("left" here) is crossed. As the input which constitutes the evidence is noisy, the accumulation process is stochastic, mimicking a random walk or the Brownian motion of physical particles. Adapted from @forstmannSequentialSamplingModels2016.
@@ -253,7 +253,7 @@ The _drift term_ $v"d"t$ is the deterministic component, with $"d"t$ an infinite
 The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy correlations (#acr("SAT")) in a single mechanistic framework with strong explanatory power (@fig:ddm_drift_bounds).
 
 #figure(
-  image("images/desenderConfidencePredictsSpeedaccuracy2019_1.jpg", width: 85%),
+  image("images/decision/desenderConfidencePredictsSpeedaccuracy2019_1.jpg", width: 85%),
   caption: flex-caption(
     short: [Diffusion Decision Model: impact of drift rate and decision bound],
     long: [Diffusion Decision Model: impact of drift rate $v$ and decision bound $a$ on Response Time. RT distributions for correct (upper bounds) and error (lower bounds) choices are depicted for different levels of drift rate and decision bound. _(A)_ A stronger drift rate yields faster decisions and higher accuracy. _(B)_ By increasing the separation between decision bounds, the probability of being correct increases, at the expense of longer RTs. Adapted from @desenderConfidencePredictsSpeedaccuracy2019.
@@ -264,7 +264,7 @@ The DDM unifies accuracy, #acr("RT") distributions, and #acr("RT")-accuracy corr
 Originally designed in the 1970s @ratcliffTheoryMemoryRetrieval, the #acr("DDM") is being used by a growing body of literature to elucidate the cognitive processes of decision-making @myersPracticalIntroductionUsing2022. From a behavioral standpoint, #acr("DDM")-based studies showed that older adults had slower non-decision times and set wider boundaries, but their drift rates were not always lower than those of young adults. #acr("DDM")-based analyses demonstrated that drift rate varied with IQ, but boundary separation and nondecision time did not. Sleep deprivation and alcohol consumption have been linked to a drift rate, but have either small or no effect on boundary separation and non-decision time. From a neuroscience standpoint, studies use the #acr("DDM") as inspiration to interpret neuron firing rates in monkeys as evidence accumulation until a threshold is reached @goldNeuralBasisDecision2007. Others correlate parameter estimates from #acr("DDM") models to the blood-oxygen-level dependent signal obtained from fMRI experiments in perceptual decision-making. The initial model has been extended to account for specific behavioral patterns like the difference in #acr("RT") between correct and error responses @ratcliffDiffusionDecisionModel2008, post-decisional change of mind by the decision-maker @resulajChangesMindDecisionmaking2009, or the need for less evidence as time passes @hawkinsRevisitingEvidenceCollapsing2015 (@fig:ddm_collapsing_bounds).
 
 #figure(
-  image("images/forstmannSequentialSamplingModels2016_5.png", width: 100%),
+  image("images/decision/forstmannSequentialSamplingModels2016_5.png", width: 100%),
   caption: flex-caption(
     short: [Diffusion Decision Model: fixed versus collapsing bounds],
     long: [Diffusion Decision Model: fixed versus collapsing bound. _(a)_ The DDM with fixed (dashed) or collapsing (solid) decision boundaries. Models with collapsing bounds can terminate the evidence accumulation process earlier, resulting in faster decisions. _(b)_ Ways in which the models lead to different predictions for RT distributions. Adapted from @forstmannSequentialSamplingModels2016.
@@ -317,7 +317,7 @@ $ X_i (t) = v_i t + z_i $ <eq:lba_dv>
 $ T_i = (a-z_i)/v_i "where" v_i > 0 $ <eq:lba_t>
 
 #figure(
-  image("images/pesquetLBA.png", width: 75%),
+  image("images/decision/pesquetLBA.png", width: 75%),
   caption: flex-caption(
     short: [Linear Ballistic Accumulator],
     long: [Simulation of the Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Starting values $z_i$ for the $n=3$ accumulators are drawn randomly and independently from identical uniform distributions on the interval $[0, Z]$ ($Z=0.5$ here). Drift rates $v_i$ (speed of evidence accumulation) are drawn independently for each accumulator from normal distributions. The choice and RT are determined by which accumulator crosses the threshold $a=1$ first (here, alternative $B$ is chosen).
@@ -346,7 +346,7 @@ $ X_i (t) = A_i (t) - max_(j != i) A_j (t) $ <eq:addm_dv>
 The decision is made once one of these decision variables crosses a threshold. This "best versus next" approach provides a more accurate description of the decision-maker's behavior than the alternative "best versus average", in which the evidence accumulated for each option is compared to the average accumulated evidence for the others.
 
 #figure(
-  image("images/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
+  image("images/decision/krajbichMultialternativeDriftdiffusionModel2011_1.png", width: 100%),
   caption: flex-caption(
     short: [Attention-based Diffusion Decision Model: task and simulation],
     long: [Attention-based Diffusion Decision Model: task and simulation. _(A)_ Task: decision-makers are presented with images of three food items and given as much time as needed to express a choice. _(B)_ Simulation: decision variables are computed for each item based on the evidence accumulated for that item compared with the highest accumulated evidence for the other items. The average rate of evidence accumulation is higher for an item when it is fixated. When one of the accumulators hits the threshold, then that item is chosen (right item here). In this particular simulation, $r_("left") = 3$, $r_("center") = 5$ and $r_("right") = 7$. Adapted from @krajbichMultialternativeDriftdiffusionModel2011.
@@ -381,7 +381,7 @@ $ X_(i,j) (t) = v_(i,j) t + z_(i,j) $ <eq:alba_dv>
 An alternative is selected when a sufficient number of accumulators associated with it reach their thresholds. The standard #acr("ALBA") model uses the "win-all" stopping rule: all pairwise accumulators $X_(i,j) (t)$ favoring option $i$ over its rivals must reach their respective thresholds $a_(i,j)$. The win-all version of #acr("ALBA") naturally provides an account of Hick’s law (@par:hicks_law).
 
 #figure(
-  image("images/pesquetALBA.png", width: 90%),
+  image("images/decision/pesquetALBA.png", width: 90%),
   caption: flex-caption(
     short: [Advantage Linear Ballistic Accumulator],
     long: [Simulation of the Advantage Linear Ballistic Accumulator model for three alternatives $A$, $B$ and $C$. Each subgraph shows accumulators favoring one of the options (top: $A$, center: $B$, bottom: $C$). The win-all stopping rule implies that an alternative is chosen once all associated accumulators cross their thresholds $a_(i,j)$. Here, $a_(i,j) = 1$ for all accumulators, and option $A$ is selected after 1000 timesteps.
