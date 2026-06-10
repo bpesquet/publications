@@ -1,32 +1,31 @@
 #import "utils.typ": back-matter, front-matter, main-matter, template
 
 #show: template.with(
-  title: "My thesis title",
+  title: "TBD thesis title",
   author: "Baptiste Pesquet",
 )
 
 // ---------- FRONT ----------
 #show: front-matter
 
-#include "content/cover.typ"
-#include "content/abstract.typ"
-#include "content/acknowledgements.typ"
-#include "content/toc.typ"
-#include "content/glossary.typ"
-#include "content/acronyms.typ"
-#include "content/notation.typ"
+#include "front/cover.typ"
+#include "front/abstract.typ"
+#include "front/acknowledgements.typ"
+#include "front/toc.typ"
+#include "front/glossary.typ"
+#include "front/acronyms.typ"
+#include "front/notation.typ"
 
 // ---------- MAIN ----------
 #show: main-matter
 
-#include "content/introduction.typ"
-#include "content/part1.typ"
-#include "content/part2.typ"
-#include "content/conclusion.typ"
+#include "main/introduction.typ"
+#include "main/litterature-review.typ"
+#include "main/contributions.typ"
+#include "main/conclusion.typ"
 
 // ---------- BACK ----------
 #show: back-matter
 
-#include "content/appendices.typ"
 // TODO: sort biblio alphabetically
-#bibliography("content/bibliography.bib")
+#bibliography("back/bibliography.bib")
