@@ -27,5 +27,6 @@
 // ---------- BACK ----------
 #show: back-matter
 
+#include "back/appendices.typ"
 // TODO: sort biblio alphabetically
 #bibliography("back/bibliography.bib")

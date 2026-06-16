@@ -4,13 +4,11 @@
 
 == The human brain: an overview
 
-The human brain is the most complex biological structure known, comprising approximately 86 billion neurons and an estimated 100 trillion synaptic connections. It is the main organ of the central nervous sytem and the seat of cognition.
-
-This section contains only general knowledge about the human brain and is by no means a scientific review. It may be skipped by readers already familiar with neuroscience.
+The human nervous system is divided into two primary components: the #acr("CNS") is comprised of the brain and the spinal cord, and the #acr("PNS") is comprised of the cranial and spinal nerves. The brain is the main organ of the #acr("CNS") and the seat of cognition. This section is a concise introduction to fundamental brain mechanisms geared toward non-neuroscientists. As such, it contains only general knowledge and may be skipped by readers already familiar with neuroscience.
 
 === Neurons
 
-Neurons are the fundamental units of the brain. Their role is to transmit information through electrical and chemical signals. A typical neuron consists of three main parts: _dendrites_ that receive signals, a body (_soma_) that integrates all incoming signals and an _axon_ that transmits electrical signals from the body to connected cells. When a neuron is inactive, it lies in a polarized state (negative inside relative to outside) called the _resting membrane potential_. Each neuron receives thousands of inputs from other neurons at exchange points called _synapses_. Incoming signals can either be _excitatory_ (depolarizing the neuron membrane) or _inhibitory_ (repolarizing it). The neuron continuously sums all incoming signals. If the combined excitatory input received at its dendrites exceeds its threshold, chemical exchanges cause the neuron's membrane potential to suddenly become positive, triggering an _action potential_. This sudden electrical spike is the actual _firing_ of the neuron. There is no partial spike: a neuron either fires fully or not at all. The action potential travels down the axon to the _presynaptic terminals_, where it is broadcasted to subsequent neurons either through electrical or chemical synapses. In the first case, ions flow directly between neurons. In the second case, there is no direct physical contact between neurons: they are separated by a tiny gap called the _synaptic cleft_. When an action potential reaches the presynaptic terminal, _neurotransmitters_ (chemical messengers like glutamate, GABA, dopamine, serotonin or acetylcholine) are released into this cleft and bind to receptors on the postsynaptic neuron's dendrites. Chemical synapses are slower but more flexible. In both cases, the signal can either be _excitatory_ or _inhibitory_ for the post-synaptic neuron. This sequence of events, from synaptic inputs to action potential propagation, constitutes the fundamental mechanism of information processing in the brain (@fig:neuron). Synaptic connections strengthen or weaken over time: this _plasticity_ is at the heart of essential cognitive functions like memory and learning.
+Neurons are the fundamental units of the brain. Their role is to transmit information through electrical and chemical signals. A typical neuron consists of three main parts: _dendrites_ that receive signals, a body (_soma_) that integrates all incoming signals and an _axon_ that transmits electrical signals from the body to connected cells. When a neuron is inactive, it lies in a polarized state (negative inside relative to outside) called the _resting membrane potential_. Each neuron receives thousands of inputs from other neurons at exchange points called _synapses_. Incoming signals can either be _excitatory_ (depolarizing the neuron membrane) or _inhibitory_ (repolarizing it). The neuron continuously sums all incoming signals. If the combined excitatory input received at its dendrites exceeds its threshold, chemical exchanges cause the neuron's membrane potential to suddenly become positive, triggering an _action potential_. This sudden electrical spike is the actual _firing_ of the neuron. There is no partial spike: a neuron either fires fully or not at all. The action potential travels down the axon to the _presynaptic terminals_, where it is broadcasted to subsequent neurons either through electrical or chemical synapses. In the first case, ions flow directly between neurons. In the second case, there is no direct physical contact between neurons: they are separated by a tiny gap called the _synaptic cleft_. When an action potential reaches the presynaptic terminal, _neurotransmitters_ (chemical messengers like glutamate, GABA, dopamine, serotonin or acetylcholine) are released into this cleft and bind to receptors on the postsynaptic neurons' dendrites. Chemical synapses are slower but more flexible. In both cases, the signal can either be _excitatory_ or _inhibitory_ for the post-synaptic neurons. This sequence of events, from synaptic inputs to action potential propagation, constitutes the fundamental mechanism of information processing in the brain (@fig:neuron). Synaptic connections strengthen or weaken over time: this _plasticity_ is at the heart of essential cognitive functions like memory and learning.
 
 #figure(
   image("images/brain/pesquetNeuron.png", width: 80%),
@@ -39,20 +37,32 @@ Neurons encode stimulus strength through _firing rate_. Since the height of the 
     [Delta], [$tilde$0.5-4 Hz], [Deep, dreamless sleep],
     [Theta], [$tilde$4-8 Hz], [Deep meditation, drowsiness, memory processes],
     [Alpha], [$tilde$8-12 Hz], [Relaxed wakefulness],
-    [Beta], [$tilde$13-30 Hz], [Active thinking and execution],
+    [Beta], [$tilde$13-30 Hz], [Active thinking, execution],
     [Gamma], [$tilde$30-100+ Hz], [Attention, high-level cognitive processing],
   ),
   caption: flex-caption(
-    short: [Major brain wave bands],
+    short: [List of major brain wave bands],
     long: [
       List of major brain wave bands. Oscillation frequencies are associated with different brain states. These categories are not strict: multiple frequencies often coexist in different brain regions.
     ],
   ),
 ) <tab:brain_waves>
 
-=== Anatomico-functional structure
+=== Cartography of brain regions
 
-The adult human brain is generaly divided into four major regions: the _cerebrum_, the _diencephalon_, the _cerebellum_, and the _brainstem_. These structures are sequentially described below.
+The adult human brain comprises approximately 86 billion neurons and an estimated 100 trillion synaptic connections. Due to _functional specialization_ (the fact that many brain regions contribute disproportionately to particular tasks), studying it by region is a practical first step toward connecting structure with behavior. Standardized axes and planes enable precise communication about neural anatomy (@fig:brain_axes_planes). However, all major cognitive functions emerge from interactions between multiple brain areas, as we shall see later.
+
+#figure(
+  image("images/brain/pesquetBrainAxesPlanes.png", width: 100%),
+  caption: flex-caption(
+    short: [Anatomical axes and planes used to identify specifc areas of the brain],
+    long: [
+      Anatomical axes and planes used to identify specifc areas of the brain. _(a)_ Rostral-caudal, dorsal-ventral, and medial-lateral axes. _(b)_ The _frontal_ or _coronal_ plane runs parallel to the eyes or ears and divides the brain into front and back areas. The _sagittal_ plane runs perpendicular to the eyes or ears and divides the brain into left and right areas. The _horizontal_ plane runs parallel to the ground and divides the brain into top and bottom areas. Adapted from @henleyFoundationsNeuroscience.
+    ],
+  ),
+) <fig:brain_axes_planes>
+
+The human brain is generaly divided into several high-level regions: the _cerebrum_, the _diencephalon_ (sometimes included in the cerebrum), the _cerebellum_, and the _brainstem_.
 
 ==== Cerebrum
 
@@ -94,15 +104,7 @@ The folding pattern of the cerebral cortex creates _gyri_ (ridges) and _sulci_ (
 
 The frontal lobe, situated anterior to the central sulcus, is the largest cortical lobe, associated with high-level cognitive functions. It is composed of three main structures: the #acr("PFC"), the premotor cortex and the motor cortex. The #acr("PFC"), occupying the anterior frontal lobe, is associated with higher-order cognitive functions like planning @luria2012higher, attention @Shallice_1988 and goal-directed behavior @hunt2017FrameworkReward. It is not a single homogeneous structure but a collection of interconnected cortical regions. The #acr("PFC") can be further divided along the dorsal-ventral and medial-lateral axes. The corresponding substructures are the #acr("dlPFC"), the #acr("dmPFC"), the #acr("vlPFC"), the #acr("vmPFC") and the #acr("OFC") (@fig:pfc).
 
-#figure(
-  image("images/brain/pesquetBrainAxesPlanes.png", width: 100%),
-  caption: flex-caption(
-    short: [Anatomical axes and planes used to divide brain regions],
-    long: [
-      Anatomical axes and planes used to divide brain regions. _(a)_ Rostral-caudal, dorsal-ventral, and medial-lateral axes. _(b)_ The _frontal_ or _coronal_ plane runs parallel to the eyes or ears and divides the brain into front and back regions. The _sagittal_ plane runs perpendicular to the eyes or ears and divides the brain into left and right regions. The _horizontal_ plane runs parallel to the ground and divides the brain into top and bottom regions. Adapted from #link("https://openbooks.lib.msu.edu/neuroscience/")[Foundation of Neuroscience].
-    ],
-  ),
-) <fig:brain_axes_planes>
+
 
 #figure(
   image("images/brain/pesquetPFC.png", width: 100%),
@@ -125,5 +127,3 @@ The frontal lobe, situated anterior to the central sulcus, is the largest cortic
 ==== Cerebellum
 
 ==== Brainstem
-
-=== Dynamics
